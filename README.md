@@ -69,7 +69,14 @@ pip install fab-quickstart
 fab-quickstart
 # copy generated output over your views.py file
 ```
-Automated pip install is under construction.  Until complete, please follow the instructions below.
+Automated pip install is under construction.  Until complete, please follow the __Explore__ instructions, below.
+
+
+## Explore
+
+The main code is `fab_quickstart/fab_quickstart_base.py`.
+
+For customizations, it is extended by its runnable subclass `fab_quickstart/fab_quickstart.py`
 
 
 ### Pre Reqs
@@ -81,7 +88,7 @@ To get started, you will need:
 
 
 ### Project Installation
-open VSCode, and clone this repo.
+Open VSCode, and clone this repo.
 
 In VSCode Python Debug Console:
 
@@ -97,28 +104,27 @@ You must also choose your Python Interpreter (e.g., `.\venv\bin\python`).
 Note: Windows Powershell requires privileges as described [here](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershel)
 
 
-## Generate
+### Generate
 
-Then, in VSCode, open the file `fab_quickstart/fab_quickstart.py`, and run it (e.g, under the debugger) using the launch config `FAB QuickStart Run`.
+Then, in VSCode, run (or debug) the launch config `FAB QuickStart Run`.
+
+This runs the file `fab_quickstart/fab_quickstart.py`.
 
 Copy the console output over the `nw/app/views.py` file.
 
 
-## Run
+### Run generated fab app
+
+Run the launch config `NW APP (Flask)'.
+
+This is equivalent to:
 ```
 cd nw
 export FLASK_APP=app
 flask run
 ```
 
-
-
-## Explore
-
-The main code is `fab_quickstart/fab_quickstart_base.py`.
-
-For customizations, it is extended by its runnable subclass `fab_quickstart/fab_quickstart.py`
-
+***
 ## Screenshot
     
 ![image](https://drive.google.com/uc?export=view&id=1Q3cG-4rQ6Q6RdZppvkrQzCDhDYHnk-F6)
