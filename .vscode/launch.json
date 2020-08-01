@@ -1,0 +1,54 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "FAB QuickStart Run",
+            "type": "python",
+            "request": "launch",
+            "program": "fab_quickstart/fab_quickstart.py",
+            "console": "integratedTerminal",
+            "env": {
+                "PYTHONPATH": "${workspaceRoot}"
+            }
+        },
+        {
+            "name": "ZZFAB Views Gen Run",
+            "type": "python",
+            "request": "launch",
+            "program": "nw/fab_views_gen_run.py",
+            "console": "integratedTerminal",
+            "env": {
+                "PYTHONPATH": "${workspaceRoot}"
+            }
+        },
+        {
+            "name": "NW App (Flask)",
+            "type": "python",
+            "request": "launch",
+            "module": "flask",
+            "env": {
+                "FLASK_APP": "nw/app",
+                "FLASK_ENV": "development",
+                "FLASK_DEBUG": "0",
+                "PYTHONPATH": "${workspaceRoot}"
+            },
+            "args": [
+                "run",
+                "--debugger",
+                "--reload"
+            ],
+            "jinja": true
+        },
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        }
+
+    ]
+}
