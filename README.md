@@ -8,10 +8,6 @@ Generated fab pages look like [this](https://drive.google.com/uc?export=view&id=
 
 See the wiki for a [Quick Start for using FAB](https://github.com/valhuber/fab-quickstart/wiki).
 
-This project contains 2 main folders:
-1. `nw`: is a fab project for a sqlite version northwind (nw), for illustration and testing
-1. `fab_quickstart` code (work in progress - see Explore, below).
-
 
 ## Background
 [Flask Application Builder (FAB)](https://github.com/dpgaspar/Flask-AppBuilder) provides a rapid means for building web pages for database apps, based on Python and Flask ([QuickStart here](https://sites.google.com/view/app-logic-server/python-fab)).
@@ -74,9 +70,11 @@ Automated pip install is under construction.  Until complete, please follow the 
 
 ## Explore
 
-The main code is `fab_quickstart/fab_quickstart_base.py`.
-
-For customizations, it is extended by its runnable subclass `fab_quickstart/fab_quickstart.py`
+This project contains 2 main folders:
+1. `nw`: is a fab project for a sqlite version northwind (nw), for illustration and testing
+1. `fab_quickstart` code (work in progress - see Explore, below).
+   1. The main code is `fab_quickstart/fab_quickstart_base.py`.   This is what you run, as described below.
+   1. For customizations, it is extended by its runnable subclass `fab_quickstart/fab_quickstart.py`
 
 
 ### Pre Reqs
