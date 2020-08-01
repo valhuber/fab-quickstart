@@ -1,6 +1,8 @@
 # fab_nw
 Generates Flask Application Builder `views.py` file - to build a __multi-page__ app (1 page per table) of __multi-table__ pages (includes `related_views` for related child data). 
 
+The wiki is a [Quick Start](https://github.com/valhuber/fab-quickstart/wiki).
+
 This is a fab project for a sqlite version northwind (nw). The project contains the __Ffab-quickstart__ code (work in progress - see Explore, below), along with the nw project for illustration and testing.
 
 
