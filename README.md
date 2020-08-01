@@ -75,7 +75,8 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-You must also choose your Python Interpreter (e.g., `.\venv\bin\python`)
+You must also choose your Python Interpreter (e.g., `.\venv\bin\python`).
+
 Note: Windows Powershell requires privileges as described [here](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershel)
 
 
