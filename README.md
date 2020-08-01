@@ -1,5 +1,5 @@
 # FAB Quick Start - build views.py
-__fab_quickstart__ generates Flask Application Builder `views.py` files, to build a __multi-page__ app (1 page per table) of __multi-table__ pages (includes `related_views` for related child data). 
+__fab_quickstart__ generates Flask Application Builder `views.py` files, to create instant __multi-page__ apps (1 page per table) of __multi-table__ pages (includes `related_views` for related child data). 
 
 The wiki is a [Quick Start for using FAB](https://github.com/valhuber/fab-quickstart/wiki).
 
