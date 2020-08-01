@@ -63,6 +63,14 @@ This project generates the `views.py` file from the `models.py` file, to save ti
 
 
 ## Install
+Planned:
+```
+pip install fab-quickstart
+fab-quickstart
+# copy generated output over your views.py file
+```
+Automated pip install is under construction.  Until complete, please follow the instructions below.
+
 
 ### Pre Reqs
 
