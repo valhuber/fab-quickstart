@@ -54,7 +54,7 @@ This project generates the `views.py` file from the `models.py` file, to save ti
 
 3. Predictive Joins (e.g, ProductName on Order+OrderDetail
 
-    a. Note - *not* generated for edit/show, else you get fab "key errors"
+    a. Note - *not* generated for edit/add, else you get fab "key errors"
 
 
 
