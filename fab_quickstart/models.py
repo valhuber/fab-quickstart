@@ -96,7 +96,7 @@ class EmployeeTerritory(BaseMixin, Model):
     Territory = relationship("Territory")
 
 
-class Order(BaseMixin, Model):
+class Order(Model):
     __tablename__ = 'Order'
 
     Id = Column(Integer, primary_key=True)

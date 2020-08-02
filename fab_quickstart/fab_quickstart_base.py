@@ -81,6 +81,7 @@ class FabQuickStartBase(object):
     _indent = "   "
     _tables_generated = set()  # to address "generate children first"
     num_pages_generated = 0
+    num_related = 0
 
     def generate_view(self, a_metadata: MetaData) -> str:
         """
@@ -305,6 +306,7 @@ class FabQuickStartBase(object):
         related_count = 0
         child_list = self.find_child_list(a_table_def)
         for each_child in child_list:
+            self.num_related += 1
             related_count += 1
             if related_count > 1:
                 result += ", "
@@ -406,6 +408,8 @@ class FabQuickStartBase(object):
             + str(len(a_metadata_tables))
             + " table(s) in model, "
             + str(self.num_pages_generated)
+            + " pages, "
+            + str(self.num_related)
             + " page(s) generated\n\n"
         )
         return result
