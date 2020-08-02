@@ -1,7 +1,3 @@
-import sqlalchemy
-import sqlalchemy.ext
-from sqlalchemy import MetaData
-
 import fab_quickstart
 
 import logging
@@ -43,16 +39,11 @@ class FabQuickStartExt(fab_quickstart.FabQuickStart):
         return ["name", "description"]
 
 log = logging.getLogger(__name__)
-log.debug("fab_quickstart (overrides here)")
-
-log = logging.getLogger(__name__)
-log.debug("\n\nRunning: " + sys.argv[0] + "\n\n" + sys.version + "\n\n")
+print("\n\nRunning: " + sys.argv[0] + "\n\n" + sys.version + "\n\n")
 
 
-metadata = fab_quickstart.find_meta_data()
+fab_quick_start_ext = FabQuickStartExt()
+generated_view = fab_quick_start_ext.run()
 
-fab_views_gen = FabQuickStartExt()
-generated_view = fab_views_gen.generate_view(metadata)
-
-log.debug("\n\nCompleted, generated views.py-->\n\n\n\n")
+print("\n\nCompleted, generated views.py-->\n\n\n\n")
 print(generated_view)

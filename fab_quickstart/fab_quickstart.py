@@ -84,22 +84,69 @@ class FabQuickStart(object):
     num_pages_generated = 0
     num_related = 0
 
-    def generate_view(self, a_metadata: MetaData) -> str:
+    def run(self):
         """
             Returns a string of views.py content
 
             This is the main entry / starting point.
 
             Parameters:
-                argument1 a_metadata - MetaData (e.g, metadata = MetaData())
+                none
         """
-        meta_tables = a_metadata.tables  # a_db.Model.metadata.tables
+        metadata = self.find_meta_data()
+        meta_tables = metadata.tables  # a_db.Model.metadata.tables
         self._result += self.generate_module_imports()
         for each_table in meta_tables.items():
             each_result = self.process_each_table(each_table[1])
             self._result += each_result
         self._result += self.process_module_end(meta_tables)
         return self._result
+
+    def find_meta_data(self) -> MetaData:
+        """     Find Metadata from model, or (failing that), db
+
+                See important notes, in code
+        """
+        """
+            Metadata contains definition of tables, cols & fKeys (show_related)
+            It can be obtained from db, or models.py; important because...
+                Many DBs don't define FKs into the db (e.g. nw.db)
+                Instead, they define "Virtual Keys" in their model files
+                To find these, we need to get Metadata from models, not db
+            So, we need to
+                1. Import the models, via a location-relative dynamic import
+                2. Find the Metadata from the imported models:
+                    a. Find cls_members in models module
+                    b. Locate first user model, use its metadata property
+            #  view_metadata = models.Order().metadata  #  class variable, non ab_, 
+        """
+
+        conn_string = "sqlite:///nw/nw.db"  # TODO - use config file, per cmd line args
+        import models  # TODO - run-relative dynamic import
+
+        orm_class = None
+        metadata = None
+        cls_members = inspect.getmembers(sys.modules["models"], inspect.isclass)
+        for each_cls_member in cls_members:
+            each_class_def_str = str(each_cls_member)
+            #  such as ('Category', <class 'models.Category'>)
+            if ("'models." in str(each_class_def_str) and
+                    "Ab" not in str(each_class_def_str)):
+                orm_class = each_cls_member
+                break
+        if (orm_class is not None):
+            log.debug("using sql for meta, from model: " + str(orm_class))
+            metadata = orm_class[1].metadata
+        # metadata = None  # enable to explore db with no fKeys
+
+        engine = sqlalchemy.create_engine(conn_string)
+
+        connection = engine.connect()
+        if (metadata is None):
+            log.debug("using db for meta (models not found")
+            metadata = MetaData()
+        metadata.reflect(bind=engine, resolve_fks=True)
+        return metadata
 
     def generate_module_imports(self) -> str:
         """
@@ -180,19 +227,23 @@ class FabQuickStart(object):
             Returns
                 string class and add_view for given table.  FIXME
         """
-        return self.gen_columns(a_table_def, "list_columns = [", 2, 4)
+        return self.gen_columns(a_table_def, "list_columns = [", 2, 4, 0)
 
     def show_columns(self, a_table_def: MetaDataTable):
-        return self.gen_columns(a_table_def, "show_columns = [", 99, 999)
+        return self.gen_columns(a_table_def, "show_columns = [", 99, 999, 999)
 
     def edit_columns(self, a_table_def: MetaDataTable):
-        return self.gen_columns(a_table_def, "edit_columns = [", 99, 999)
+        return self.gen_columns(a_table_def, "edit_columns = [", 99, 999, 999)
 
     def add_columns(self, a_table_def: MetaDataTable):
-        return self.gen_columns(a_table_def, "add_columns = [", 99, 999)
+        return self.gen_columns(a_table_def, "add_columns = [", 99, 999, 999)
 
-    def gen_columns(self, a_table_def: MetaDataTable,
-                    a_view_type: int, a_max_joins: int, a_max_columns: int):
+    def gen_columns(self,
+                    a_table_def: MetaDataTable,
+                    a_view_type: int,
+                    a_max_joins: int,
+                    a_max_columns: int,
+                    a_max_id_columns: int):
         """
         Generates statements like:
 
@@ -207,7 +258,8 @@ class FabQuickStart(object):
                 argument1 a_table_def - TableModelInstance
                 argument2 a_view_type - str like "list_columns = ["
                 argument3 a_max_joins - int max joins (list is smaller)
-                argument4 a_max_fields - int how many columns (list smaller)
+                argument4 a_max_columns - int how many columns (")
+                argument5 a_id_columns - int how many "id" columns (")
 
             Returns
                 string like list_columns =["Name", "Parent.Name", ... "Id"]
@@ -220,6 +272,7 @@ class FabQuickStart(object):
 
         favorite_column_name = self.favorite_column_name(a_table_def)
         column_count = 1
+        id_column_count = 0
         result += '"' + favorite_column_name + '"'
         processed_column_names.add(favorite_column_name)
 
@@ -247,6 +300,8 @@ class FabQuickStart(object):
             result += '"' + each_column.name + '"'
         for each_id_column_name in id_column_names:
             column_count += 1
+            if (column_count > a_max_id_columns):
+                break
             if column_count > 1:
                 result += ", "
             result += '"' + each_id_column_name + '"'
@@ -301,11 +356,11 @@ class FabQuickStart(object):
         related_count = 0
         child_list = self.find_child_list(a_table_def)
         for each_child in child_list:
-            self.num_related += 1
+            related_count += 1
             if related_count > 1:
                 result += ", "
             else:
-                related_count += 1
+                self.num_related += 1
             result += each_child.fullname + self.model_name(each_child)
         result += "]\n"
         return result
@@ -331,7 +386,7 @@ class FabQuickStart(object):
             parents = each_possible_child.foreign_keys
             if (a_table_def.name == "Customer" and 
                     each_possible_child.name == "Order"):
-                print (a_table_def)
+                log.debug (a_table_def)
             for each_parent in parents:
                 each_parent_name = each_parent.target_fullname
                 loc_dot = each_parent_name.index(".")
@@ -408,56 +463,12 @@ class FabQuickStart(object):
             + str(self.num_related)
             + " related_view(s).\n\n"
         )
+        if (self.num_related == 0):
+            result += "#  Warning - no related_views,"
+            result += " since foreign keys missing\n"
+            result += "#  .. add them to your models.py (see nw example)\n"
+            result += "#  .. or better, add them to your database"
         return result
-
-
-def find_meta_data() -> MetaData:
-    """     FIXME - getting foreign_keys is not so simple
-
-        Why is this important
-            Many DBs don't define FKs into the db
-            Instead, they define "Virtual Keys" in their model files
-        foreign_keys visible, using sqlite:///nw/nw.db
-            I added fKeys to the db
-        foreign_keys NOT visible, using sqlite:///nw/nw-no-fkeys.db
-            Even explicitly loading model (see 3 lines below), metadata has no foreign_keys
-            But *something* works for FAB... what is it??
-        References
-            https://stackoverflow.com/questions/31082692/how-does-flask-sqlalchemy-create-all-discover-the-models-to-create
-            https://stackoverflow.com/questions/62585890/how-does-flask-sqlalchemy-know-which-models-classes-youve-defined
-    """
-
-    conn_string = "sqlite:///nw/nw.db"  #  TODO - use config file, per cmd line args
-    import models  #   trying to get sqla to see fkeys (moving to top does not help)
-
-    #  view_metadata = models.Order().metadata  #  class variable, non ab_, 
-
-    orm_class = None
-    metadata = None
-    cls_members = inspect.getmembers(sys.modules["models"], inspect.isclass)
-    for each_cls_member in cls_members:
-        each_class_def_str = str(each_cls_member)
-        #  such as ('Category', <class 'models.Category'>)
-        if ("'models." in str(each_class_def_str) and
-                "Ab" not in str(each_class_def_str)):
-            orm_class = each_cls_member
-            break
-    if (orm_class is not None):
-        print("using meta from model: " + str(orm_class))
-        what_is = type(orm_class)
-        metadata = orm_class[1].metadata
-    #  metadata = None  enable to explore db with no fKeys
-
-    engine = sqlalchemy.create_engine(conn_string)
-
-    connection = engine.connect()
-    # metadata = MetaData()
-    if (metadata is None):
-        print("models not found, using db for meta.")
-        print("... warning: related_views depends on db foreign keys")
-        metadata = MetaData()
-    metadata.reflect(bind=engine, resolve_fks=True)
-    return metadata
 
 
 log = logging.getLogger(__name__)
@@ -465,10 +476,8 @@ log.debug("BuildViewsBase loading...")
 if (__name__ == "__main__"):
     log.debug("directly run (without extensions subclass")
 
-    metadata = find_meta_data()
-
     fab_quickstart = FabQuickStart()
-    generated_view = fab_quickstart.generate_view(metadata)
+    generated_view = fab_quickstart.run()
 
     log.debug("\n\nCompleted, generated views.py-->\n\n\n\n")
     print(generated_view)
