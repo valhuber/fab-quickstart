@@ -106,8 +106,12 @@ Note: Windows Powershell requires privileges as described [here](https://docs.mi
 ### Generate
 
 Then, in VSCode, run (or debug) the launch config `FAB QuickStart Run`.
+This runs the file `fab_quickstart/fab_quickstart_ext.py`.
 
-This runs the file `fab_quickstart/fab_quickstart.py`.
+Alternatively, run `fab_quickstart/fab_quickstart_ext.py`
+(e.g., launch config `Python: Current File`).
+
+This provides optional overrides for extension, and calls `fab_quickstart/fab_quickstart_ext.py`.
 
 Copy the console output over the `nw/app/views.py` file.
 
