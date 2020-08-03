@@ -1,4 +1,16 @@
-# default views.py, generated at: 2020-08-03 11:00:55.796824
+"""
+      (venv) val@valMbp fab-quickstart %  cd /Users/val/python/vscode/fab-quickstart ; env /Users/val/python/vscode/fab-quickstart/venv/bin/python /Users/val/.vscode/extensions/ms-python.python-2020.7.96456/pythonFiles/lib/python/debugpy/launcher 49887 -- /Users/val/python/vscode/fab-quickstart/fab_quickstart/fab_quickstart.py 
+
+
+      Running: /Users/val/python/vscode/fab-quickstart/fab_quickstart/fab_quickstart.py
+
+      3.8.3 (default, Jul 15 2020, 16:38:07) 
+      [Clang 11.0.3 (clang-1103.0.32.62)]
+
+
+      os.getcwd (): /Users/val/python/vscode/fab-quickstart/nw
+"""
+# default views.py, generated at: 2020-08-03 11:30:50.713908
 
 from flask_appbuilder import ModelView
 from flask_appbuilder.models.sqla.interface import SQLAInterface
@@ -40,8 +52,8 @@ appbuilder.add_view(
 
 class OrderDetailModelView(ModelView):
    datamodel = SQLAInterface(OrderDetail)
-   list_columns = ["Id", "Product.ProductName", "Order.ShipName", "UnitPrice"]
-   show_columns = ["Id", "Product.ProductName", "Order.ShipName", "UnitPrice", "Quantity", "Discount", "OrderId", "ProductId"]
+   list_columns = ["Id", "Order.ShipName", "Product.ProductName", "UnitPrice"]
+   show_columns = ["Id", "Order.ShipName", "Product.ProductName", "UnitPrice", "Quantity", "Discount", "OrderId", "ProductId"]
    edit_columns = ["Id", "UnitPrice", "Quantity", "Discount", "OrderId", "ProductId"]
    add_columns = ["Id", "UnitPrice", "Quantity", "Discount", "OrderId", "ProductId"]
    related_views = []
@@ -56,9 +68,9 @@ appbuilder.add_view(
 class OrderModelView(ModelView):
    datamodel = SQLAInterface(Order)
    list_columns = ["ShipName", "Customer.CompanyName", "OrderDate", "RequiredDate"]
-   show_columns = ["ShipName", "Customer.CompanyName", "OrderDate", "RequiredDate", "ShippedDate", "ShipVia", "Freight", "ShipAddress", "ShipCity", "ShipRegion", "ShipPostalCode", "ShipCountry", "EmployeeId", "Id", "CustomerId"]
-   edit_columns = ["ShipName", "OrderDate", "RequiredDate", "ShippedDate", "ShipVia", "Freight", "ShipAddress", "ShipCity", "ShipRegion", "ShipPostalCode", "ShipCountry", "EmployeeId", "Id", "CustomerId"]
-   add_columns = ["ShipName", "OrderDate", "RequiredDate", "ShippedDate", "ShipVia", "Freight", "ShipAddress", "ShipCity", "ShipRegion", "ShipPostalCode", "ShipCountry", "EmployeeId", "Id", "CustomerId"]
+   show_columns = ["ShipName", "Customer.CompanyName", "OrderDate", "RequiredDate", "ShippedDate", "ShipVia", "Freight", "ShipAddress", "ShipCity", "ShipRegion", "ShipPostalCode", "ShipCountry", "CustomerId", "EmployeeId", "Id"]
+   edit_columns = ["ShipName", "OrderDate", "RequiredDate", "ShippedDate", "ShipVia", "Freight", "ShipAddress", "ShipCity", "ShipRegion", "ShipPostalCode", "ShipCountry", "CustomerId", "EmployeeId", "Id"]
+   add_columns = ["ShipName", "OrderDate", "RequiredDate", "ShippedDate", "ShipVia", "Freight", "ShipAddress", "ShipCity", "ShipRegion", "ShipPostalCode", "ShipCountry", "CustomerId", "EmployeeId", "Id"]
    related_views = [OrderDetailModelView]
 
 appbuilder.add_view(
@@ -131,9 +143,9 @@ appbuilder.add_view(
 class ProductModelView(ModelView):
    datamodel = SQLAInterface(Product)
    list_columns = ["ProductName", "QuantityPerUnit", "UnitPrice", "UnitsInStock"]
-   show_columns = ["ProductName", "QuantityPerUnit", "UnitPrice", "UnitsInStock", "UnitsOnOrder", "ReorderLevel", "Discontinued", "CategoryId", "SupplierId", "Id"]
-   edit_columns = ["ProductName", "QuantityPerUnit", "UnitPrice", "UnitsInStock", "UnitsOnOrder", "ReorderLevel", "Discontinued", "CategoryId", "SupplierId", "Id"]
-   add_columns = ["ProductName", "QuantityPerUnit", "UnitPrice", "UnitsInStock", "UnitsOnOrder", "ReorderLevel", "Discontinued", "CategoryId", "SupplierId", "Id"]
+   show_columns = ["ProductName", "QuantityPerUnit", "UnitPrice", "UnitsInStock", "UnitsOnOrder", "ReorderLevel", "Discontinued", "SupplierId", "Id", "CategoryId"]
+   edit_columns = ["ProductName", "QuantityPerUnit", "UnitPrice", "UnitsInStock", "UnitsOnOrder", "ReorderLevel", "Discontinued", "SupplierId", "Id", "CategoryId"]
+   add_columns = ["ProductName", "QuantityPerUnit", "UnitPrice", "UnitsInStock", "UnitsOnOrder", "ReorderLevel", "Discontinued", "SupplierId", "Id", "CategoryId"]
    related_views = [OrderDetailModelView]
 
 appbuilder.add_view(
@@ -209,4 +221,3 @@ appbuilder.add_view(
 # skip admin table: ab_user
 # skip admin table: ab_user_role
 #  21 table(s) in model; generated 13 page(s), including 5 related_view(s).
-

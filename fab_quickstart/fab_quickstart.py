@@ -132,9 +132,8 @@ class FabQuickStart(object):
 
         """
 
-        conn_string = "sqlite:///nw/nw.db"  # TODO - use config file, per cmd line args
-
-        do_dynamic_load = True  # TODO - remove backup code
+        conn_string = None
+        do_dynamic_load = True
 
         if (do_dynamic_load):
             """
@@ -146,11 +145,16 @@ class FabQuickStart(object):
 
                 credit: https://www.blog.pythonlibrary.org/2016/05/27/python-201-an-intro-to-importlib/
             """
-            sys.path.insert(0, a_cwd + '/app')  # TODO - run-relative dynamic import
-            print(sys.path)  #  e.g., adds /Users/val/python/vscode/fab-quickstart/nw/app
+            sys.path.insert(0, a_cwd + '/app') 
+            # print(sys.path)  #  e.g., adds /Users/val/python/vscode/fab-quickstart/nw/app
             models = importlib.import_module('models')
-        else:
+
+            sys.path.insert(0, a_cwd)
+            config = importlib.import_module('config')
+            conn_string = config.SQLALCHEMY_DATABASE_URI
+        else:  # TODO - use dynamic loading (above), remove this when stable
             import models
+            conn_string = "sqlite:///nw/nw.db"
 
         orm_class = None
         metadata = None
@@ -255,7 +259,7 @@ class FabQuickStart(object):
             Returns
                 string class and add_view for given table.  FIXME
         """
-        return self.gen_columns(a_table_def, "list_columns = [", 2, 4, 0)
+        return self.gen_columns(a_table_def, "list_columns = [", 2, 5, 0)
 
     def show_columns(self, a_table_def: MetaDataTable):
         return self.gen_columns(a_table_def, "show_columns = [", 99, 999, 999)
