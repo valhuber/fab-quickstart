@@ -60,10 +60,13 @@ import logging
 import datetime
 from typing import NewType
 import sys
+import logging
+import os
 import sqlalchemy
 import sqlalchemy.ext
 from sqlalchemy import MetaData
 import inspect
+import importlib
 
 #  MetaData = NewType('MetaData', object)
 MetaDataTable = NewType('MetaDataTable', object)
@@ -93,7 +96,13 @@ class FabQuickStart(object):
             Parameters:
                 none
         """
-        metadata = self.find_meta_data()
+        print("\n\nRunning: " + sys.argv[0] + "\n\n" + sys.version + "\n\n")
+        cwd = os.getcwd()
+        if ("fab-quickstart" in cwd):
+            cwd = cwd.replace("fab-quickstart", "fab-quickstart/nw", 1)  # internal debug only
+        print("os.getcwd ():", cwd)
+
+        metadata = self.find_meta_data(cwd)
         meta_tables = metadata.tables  # a_db.Model.metadata.tables
         self._result += self.generate_module_imports()
         for each_table in meta_tables.items():
@@ -102,12 +111,9 @@ class FabQuickStart(object):
         self._result += self.process_module_end(meta_tables)
         return self._result
 
-    def find_meta_data(self) -> MetaData:
+    def find_meta_data(self, a_cwd: str) -> MetaData:
         """     Find Metadata from model, or (failing that), db
 
-                See important notes, in code
-        """
-        """
             Metadata contains definition of tables, cols & fKeys (show_related)
             It can be obtained from db, or models.py; important because...
                 Many DBs don't define FKs into the db (e.g. nw.db)
@@ -119,10 +125,56 @@ class FabQuickStart(object):
                     a. Find cls_members in models module
                     b. Locate first user model, use its metadata property
             #  view_metadata = models.Order().metadata  #  class variable, non ab_, 
+
+            All this is doing is:
+                    from .goldfish import GoldFish as goldfish
+                    from <cwd>/app import models(.py) as models
+
         """
 
         conn_string = "sqlite:///nw/nw.db"  # TODO - use config file, per cmd line args
-        import models  # TODO - run-relative dynamic import
+
+        do_dynamic_load = False
+
+        if (do_dynamic_load):
+            # import models  # TODO - run-relative dynamic import
+            import_lib = a_cwd + "/app/models.py"  # err '/Users/val/python/vscode/nw/app/models'
+            import_lib = import_lib.replace("/", ".")
+            import_lib = import_lib[1:]
+            print("logging.file: ", logging.__file__)
+            print("logging.name: ", logging.__name__)
+            import_lib = "Users/val/python/vscode/fab-quickstart/nw/app/__init__.py"
+
+            sys.path.insert(0, "Users/val/python/vscode/fab-quickstart/nw/app")
+            # models = importlib.import_module("models", package="app") #  no pkg name views
+
+            # models = importlib.import_module("Users/val/python/vscode/fab-quickstart/nw/app", package='models')  # module not found
+
+            import_mod_name = "models"
+            models_spec = importlib.util.spec_from_file_location(
+                import_mod_name, loader = import_lib)
+            module = importlib.util.module_from_spec(models_spec)
+            # models_spec.loader.exec_module(module) 
+            # str' object has no attribute 'exec_module'
+            # not found: 'Users/val/python/vscode/fab-quickstart/nw/app/__init__.py'
+            """
+                module_file_path = module_name.__file__
+                module_name = module_name.__name__
+                
+                https://www.blog.pythonlibrary.org/2016/05/27/python-201-an-intro-to-importlib/
+                    module_spec = importlib.util.spec_from_file_location(
+                        module_name, module_file_path)
+                    module = importlib.util.module_from_spec(module_spec)
+                    module_spec.loader.exec_module(module)
+                    print(dir(module))
+
+                https://programtalk.com/python-examples/importlib.util.spec_from_file_location/
+                https://stackoverflow.com/questions/56603077/modulenotfounderror-when-using-importlib-import-module
+                https://stackoverflow.com/questions/8790003/dynamically-import-a-method-in-a-file-from-a-string
+            """
+            # models = importlib.import_module(import_module)  # ModuleNotFoundError
+        else:
+            import models
 
         orm_class = None
         metadata = None

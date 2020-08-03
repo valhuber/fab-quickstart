@@ -38,9 +38,6 @@ class FabQuickStartExt(fab_quickstart.FabQuickStart):
         """
         return ["name", "description"]
 
-log = logging.getLogger(__name__)
-print("\n\nRunning: " + sys.argv[0] + "\n\n" + sys.version + "\n\n")
-
 
 fab_quick_start_ext = FabQuickStartExt()
 generated_view = fab_quick_start_ext.run()

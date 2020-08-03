@@ -8,8 +8,9 @@
             "name": "FAB QuickStart Run",
             "type": "python",
             "request": "launch",
-            "program": "fab_quickstart/fab_quickstart_ext.py",
+            "program": "${workspaceRoot}/fab_quickstart/fab_quickstart_ext.py",
             "console": "integratedTerminal",
+            "cwd": "${workspaceRoot}/nw",
             "env": {
                 "PYTHONPATH": "${workspaceRoot}"
             }

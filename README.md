@@ -61,6 +61,7 @@ This project generates the `views.py` file from the `models.py` file, to save ti
 ## Install
 Planned:
 ```
+cd <project>  # fab directory containing `config.py` file
 pip install fab-quickstart
 fab-quickstart
 # copy generated output over your views.py file
