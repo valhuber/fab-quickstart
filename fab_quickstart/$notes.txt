@@ -34,3 +34,42 @@ ALTER TABLE "EmployeeTerritory" RENAME TO "old";
 ALTER TABLE new RENAME TO "EmployeeTerritory";
 
 drop table old;
+
+
+
+            import_lib = a_cwd + "/app/models.py"  # err '/Users/val/python/vscode/nw/app/models'
+            import_lib = import_lib.replace("/", ".")
+            import_lib = import_lib[1:]
+            print("logging.file: ", logging.__file__)
+            print("logging.name: ", logging.__name__)
+            import_lib = "Users/val/python/vscode/fab-quickstart/nw/app/__init__.py"
+
+            sys.path.insert(0, "Users/val/python/vscode/fab-quickstart/nw/app")
+            # models = importlib.import_module("models", package="app") #  no pkg name views
+
+            # models = importlib.import_module("Users/val/python/vscode/fab-quickstart/nw/app", package='models')  # module not found
+
+            import_mod_name = "models"
+            models_spec = importlib.util.spec_from_file_location(
+                import_mod_name, loader = import_lib)
+            module = importlib.util.module_from_spec(models_spec)
+            # models_spec.loader.exec_module(module) 
+            # str' object has no attribute 'exec_module'
+            # not found: 'Users/val/python/vscode/fab-quickstart/nw/app/__init__.py'
+            """
+                module_file_path = module_name.__file__
+                module_name = module_name.__name__
+                
+                https://www.blog.pythonlibrary.org/2016/05/27/python-201-an-intro-to-importlib/
+                    module_spec = importlib.util.spec_from_file_location(
+                        module_name, module_file_path)
+                    module = importlib.util.module_from_spec(module_spec)
+                    module_spec.loader.exec_module(module)
+                    print(dir(module))
+
+                https://www.blog.pythonlibrary.org/2016/05/27/python-201-an-intro-to-importlib/
+                https://programtalk.com/python-examples/importlib.util.spec_from_file_location/
+                https://stackoverflow.com/questions/56603077/modulenotfounderror-when-using-importlib-import-module
+                https://stackoverflow.com/questions/8790003/dynamically-import-a-method-in-a-file-from-a-string
+            """
+            # models = importlib.import_module(import_module)  # ModuleNotFoundError

@@ -2,6 +2,18 @@ import importlib
 import sys
 import slugify
 
+# https://www.blog.pythonlibrary.org/2016/05/27/python-201-an-intro-to-importlib/
+def dynamic_import(module):
+    return importlib.import_module(module)  # No module named 'models'
+
+sys.path.insert(0, "Users/val/python/vscode/fab-quickstart/nw/app")  # or, with /__init__.py")
+print(sys.path)
+module = importlib.import_module('models')  # dynamic_import('models')  # or, with .py
+module.main()
+
+
+
+
 # https://programtalk.com/python-examples/importlib.util.spec_from_file_location/
 
 def _import_system_file(filename):

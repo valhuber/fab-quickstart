@@ -134,45 +134,21 @@ class FabQuickStart(object):
 
         conn_string = "sqlite:///nw/nw.db"  # TODO - use config file, per cmd line args
 
-        do_dynamic_load = False
+        do_dynamic_load = True  # TODO - remove backup code
 
         if (do_dynamic_load):
-            # import models  # TODO - run-relative dynamic import
-            import_lib = a_cwd + "/app/models.py"  # err '/Users/val/python/vscode/nw/app/models'
-            import_lib = import_lib.replace("/", ".")
-            import_lib = import_lib[1:]
-            print("logging.file: ", logging.__file__)
-            print("logging.name: ", logging.__name__)
-            import_lib = "Users/val/python/vscode/fab-quickstart/nw/app/__init__.py"
-
-            sys.path.insert(0, "Users/val/python/vscode/fab-quickstart/nw/app")
-            # models = importlib.import_module("models", package="app") #  no pkg name views
-
-            # models = importlib.import_module("Users/val/python/vscode/fab-quickstart/nw/app", package='models')  # module not found
-
-            import_mod_name = "models"
-            models_spec = importlib.util.spec_from_file_location(
-                import_mod_name, loader = import_lib)
-            module = importlib.util.module_from_spec(models_spec)
-            # models_spec.loader.exec_module(module) 
-            # str' object has no attribute 'exec_module'
-            # not found: 'Users/val/python/vscode/fab-quickstart/nw/app/__init__.py'
             """
-                module_file_path = module_name.__file__
-                module_name = module_name.__name__
-                
-                https://www.blog.pythonlibrary.org/2016/05/27/python-201-an-intro-to-importlib/
-                    module_spec = importlib.util.spec_from_file_location(
-                        module_name, module_file_path)
-                    module = importlib.util.module_from_spec(module_spec)
-                    module_spec.loader.exec_module(module)
-                    print(dir(module))
+                a_cwd -- not-this-project-dir (e.g., nw)
+                --app
+                --|--__init__.py
+                --|--models.py
+                --config.py
 
-                https://programtalk.com/python-examples/importlib.util.spec_from_file_location/
-                https://stackoverflow.com/questions/56603077/modulenotfounderror-when-using-importlib-import-module
-                https://stackoverflow.com/questions/8790003/dynamically-import-a-method-in-a-file-from-a-string
+                credit: https://www.blog.pythonlibrary.org/2016/05/27/python-201-an-intro-to-importlib/
             """
-            # models = importlib.import_module(import_module)  # ModuleNotFoundError
+            sys.path.insert(0, a_cwd + '/app')  # TODO - run-relative dynamic import
+            print(sys.path)  #  e.g., adds /Users/val/python/vscode/fab-quickstart/nw/app
+            models = importlib.import_module('models')
         else:
             import models
 
