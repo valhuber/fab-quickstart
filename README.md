@@ -59,7 +59,10 @@ This project generates the `views.py` file from the `models.py` file, to save ti
 
 
 ## Install
-Planned:
+```diff
+- Planned
+
+```
 ```
 cd <project>  # fab directory containing `config.py` file
 pip install fab-quickstart
@@ -72,7 +75,8 @@ Automated pip install is under construction.  Until complete, please follow the 
 ## Explore
 
 This project contains 2 main folders:
-1. `nw`: is a fab project for a sqlite version northwind (nw), for illustration and testing
+1. `nw`: is a fab project for a sqlite version northwind (nw), for illustration and testing.
+It was built using the ([QuickStart procedure.](https://sites.google.com/view/app-logic-server/python-fab))
 1. `fab_quickstart` code (work in progress - see Explore, below).
    1. The main code is `fab_quickstart/fab_quickstart_base.py`.   This is what you run, as described below.
    1. For customizations, it is extended by its runnable subclass `fab_quickstart/fab_quickstart.py`
@@ -106,11 +110,17 @@ Note: Windows Powershell requires privileges as described [here](https://docs.mi
 
 ### Generate
 
-Then, in VSCode, run (or debug) the launch config `FAB QuickStart Run`.
-This runs the file `fab_quickstart/fab_quickstart_ext.py`.
+Then, in VSCode, select Launch Config: `Python: Run Current File`,
+and run any of:
+* `fab_quickstart/fab_quickstart_ext.py`
+* `fab_quickstart/cli.py`
+* `fab_quickstart/fab_quickstart.py`
 
-Alternatively, run `fab_quickstart/fab_quickstart_ext.py`
-(e.g., launch config `Python: Current File`).
+Or, in a terminal window:
+```
+cd nw
+    
+```
 
 This provides optional overrides for extension, and calls `fab_quickstart/fab_quickstart_ext.py`.
 

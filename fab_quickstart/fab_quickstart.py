@@ -94,16 +94,18 @@ class FabQuickStart(object):
         self._favorite_names = a_favorites_str.split()
 
         cwd = os.getcwd()
-        if ("fab-quickstart" in cwd):
-            cwd = cwd.replace("fab-quickstart", "fab-quickstart/nw", 1)  # TODO debug only
-        print('"""')
-        print("\nFab QuickStart 0.1 running\n\n"
-              + "Current Working Directory: " + cwd + "\n\n"
-              + "From: " + sys.argv[0] + "\n\n"
-              + "Using Python: " + sys.version + "\n\n"
-              + "Generated at: " + str(datetime.datetime.now())
-              + "\n")
-        print('"""')
+        self._result += '"""'
+        self._result += ("\nFab QuickStart 0.1 running\n\n"
+                         + "Current Working Directory: " + cwd + "\n\n"
+                         + "From: " + sys.argv[0] + "\n\n"
+                         + "Using Python: " + sys.version + "\n\n"
+                         + "Favorites: " + str(self._favorite_names) + "\n\n"
+                         + "At: " + str(datetime.datetime.now()) + "\n\n")
+        if ("fab-quickstart" in cwd and "nw" not in cwd):
+            cwd = cwd.replace("fab-quickstart", "fab-quickstart/nw", 1)
+            self._result += "Debug cmd override: " + cwd + "\n\n"
+            print (self._result)
+        self._result += '"""\n\n'
         metadata = self.find_meta_data(cwd)
         meta_tables = metadata.tables
         self._result += self.generate_module_imports()

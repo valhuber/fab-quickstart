@@ -4,7 +4,7 @@ import fab_quickstart
 
 @click.command()
 @click.option('--favorites',
-              default="['name', 'description']",
+              default="name, description",
               prompt="Favorite Column Names",
               help="Word(s) used to indentify 'favorite column' (displayed first)")
 def main(favorites):
