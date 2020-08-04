@@ -11,6 +11,6 @@ setup(
       package_data={},
       install_requires=['click'],
       entry_points={
-        'console_scripts': ['fab_quickstart = fab_quickstart.cli:start']
+        'console_scripts': ['fab_quickstart_cli:start']
       }
 )
