@@ -4,38 +4,23 @@
 This is the super class
     Extended by build_views, for overides as required.
 
-Discussion 7/28
+Discussion 8/6
+    Project rename to fab_quickstart, with wiki FAB quickstart
     Code cleanup: flake8, black (now activated, done?)
     Standard out: print vs. log (done)
     Annotations (done)
-    Command line, using click (but, customization via subclass)
-        Needs discussion FIXME
-            fab_views_gen_run depends on dir location of app
-            to obtain the models (from app.models import *).
-                Will that work in cmd line?  Is there a better way?
-            Also, the options are sometimes code, not simple strings
-                E.g., model_name might depend on table_name
-        Also discuss - how will fab user discover fab_views_gen?
-            Flask-AppBuilder-Skeleton includes reference?  or code itself??
-
-To run:
-    1. Generate model (consider https://pypi.org/project/sqlacodegen/)
-        a. Hand-add relationships
-        b. Hand-edit classes, e.g.,
-            not: def Customer(Model)
-            but: def Customer(BaseMixin, Model)
-    2. Run fab_views_gen_run.py
-    3. Copy console contents to your app/views.py file
-    4. cd nw; flask run
+    Click Command line Args (done)
+    Command Line Packaging (TODO)
 
 Features:
     1. Generate views.py with 1 class per (not ab_) table
         a. "Favorite" fields (contains name) first
-        b. Numeric keyfields last
+        b. Numeric keyfields last (none for list)
+        c. Sensible limits on # fields for list
     2. With Referenced for master/detail (Order before Customer)
         a. Generated child views first
     3. Predictive Joins (ProductName on Order+OrderDetail
-        a. Note - *not* generated for edit/show, else you get fab "key errors"
+        a. Note - *not* generated for edit/add, else you get fab "key errors"
 
 Status:
     * Technology Preview
@@ -67,6 +52,7 @@ import sqlalchemy.ext
 from sqlalchemy import MetaData
 import inspect
 import importlib
+import click
 
 #  MetaData = NewType('MetaData', object)
 MetaDataTable = NewType('MetaDataTable', object)
@@ -77,33 +63,49 @@ class FabQuickStart(object):
     Iterate over all tables, create view statements for each
     """
 
-    _result = (
-        "# default views.py, generated at: " +
-        str(datetime.datetime.now()) + "\n\n"
-    )
+    _result = ""
+
+    """
+        array of substrings used to find favorite column name
+
+        override per language, db conventions
+
+        eg,
+            name in English
+            nom in French
+    """
+    _favorite_names = []  # ["name", "description"]
+    _favorite_names_str = "name, description"  # users might supply "name, description"
 
     _indent = "   "
     _tables_generated = set()  # to address "generate children first"
     num_pages_generated = 0
     num_related = 0
 
-    def run(self):
+    def run(self, a_favorites_str: str) -> str:
         """
             Returns a string of views.py content
 
-            This is the main entry / starting point.
+            This is the main entry.
 
             Parameters:
-                none
+                argument1 a_favorites_str - TableModelInstance
         """
-        print("\n\nRunning: " + sys.argv[0] + "\n\n" + sys.version + "\n\n")
+        self._favorite_names = a_favorites_str.split()
+
         cwd = os.getcwd()
         if ("fab-quickstart" in cwd):
-            cwd = cwd.replace("fab-quickstart", "fab-quickstart/nw", 1)  # internal debug only
-        print("os.getcwd ():", cwd)
-
+            cwd = cwd.replace("fab-quickstart", "fab-quickstart/nw", 1)  # TODO debug only
+        print('"""')
+        print("\nFab QuickStart 0.1 running\n\n"
+              + "Current Working Directory: " + cwd + "\n\n"
+              + "From: " + sys.argv[0] + "\n\n"
+              + "Using Python: " + sys.version + "\n\n"
+              + "Generated at: " + str(datetime.datetime.now())
+              + "\n")
+        print('"""')
         metadata = self.find_meta_data(cwd)
-        meta_tables = metadata.tables  # a_db.Model.metadata.tables
+        meta_tables = metadata.tables
         self._result += self.generate_module_imports()
         for each_table in meta_tables.items():
             each_result = self.process_each_table(each_table[1])
@@ -454,7 +456,7 @@ class FabQuickStart(object):
             Returns
                 string of column name that is favorite (e.g., first in list)
         """
-        favorite_names = self.favorite_name()
+        favorite_names = self._favorite_names
         for each_favorite_name in favorite_names:
             columns = a_table_def.columns
             for each_column in columns:
@@ -467,18 +469,6 @@ class FabQuickStart(object):
                     return each_column.name
         for each_column in columns:  # no favorites, just return 1st
             return each_column.name
-
-    def favorite_name(self) -> str:
-        """
-            returns array of substrings used to find favorite column name
-
-            override per language, db conventions
-
-            eg,
-                name in English
-                nom in French
-        """
-        return ["name"]
 
     def process_module_end(self, a_metadata_tables: MetaData) -> str:
         """
@@ -509,7 +499,7 @@ if (__name__ == "__main__"):
     log.debug("directly run (without extensions subclass")
 
     fab_quickstart = FabQuickStart()
-    generated_view = fab_quickstart.run()
+    favs = fab_quickstart._favorite_names_str
+    rtnCode = fab_quickstart.run(favs)  # Exception has occurred: SystemExit
 
-    log.debug("\n\nCompleted, generated views.py-->\n\n\n\n")
-    print(generated_view)
+    print(fab_quickstart._result)

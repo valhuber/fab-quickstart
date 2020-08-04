@@ -42,5 +42,4 @@ class FabQuickStartExt(fab_quickstart.FabQuickStart):
 fab_quick_start_ext = FabQuickStartExt()
 generated_view = fab_quick_start_ext.run()
 
-print("\n\nCompleted, generated views.py-->\n\n\n\n")
 print(generated_view)
