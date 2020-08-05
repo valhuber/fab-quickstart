@@ -1,11 +1,15 @@
 # FAB Quick Start - build views.py
 __fab_quickstart__ generates Flask Application Builder `views.py` files, to create instant multi-page, multi-table apps.
 
-Generated fab pages look like [this](https://drive.google.com/uc?export=view&id=1Q3cG-4rQ6Q6RdZppvkrQzCDhDYHnk-F6):
-* __multi-page__ apps (1 page per table)
-* __multi-table__ pages (includes `related_views` for related child data). 
+## Features
+Generated fab pages look like as shown below:
+1. __multi-page__ apps (1 page per table)
+1. __multi-table__ pages (includes `related_views` for related child data)
+1. __favorite field first__ first field is "name", or contains "name" (configurable)
+1. __predictive joins__ favorite field of each parent is shown (product _name_ - not product _id_)
+1. __ids last__ such boring fields are not shown on lists, last on view pages
 
-
+![generated page](https://drive.google.com/uc?export=view&id=1Q3cG-4rQ6Q6RdZppvkrQzCDhDYHnk-F6)
 See the wiki for a [Quick Start for using FAB](https://github.com/valhuber/fab-quickstart/wiki).
 
 
@@ -33,29 +37,6 @@ appbuilder.add_view(
 
 
 This project generates the `views.py` file from the `models.py` file, to save time and reduce learning curve.
-
-## Key Features
-
-1. Generate `views.py` with 1 class per (not ab_) table
-
-    a. "Favorite" field (called "name", or contains "name") first
-          
-          Eg, List of Products - ProductName is more interesting than ProductId, so show it first
-    
-    b. Join Fields (join in parents' favorite field)
-          
-          Eg, List of Order + OrderDetails: show ProductName (not id)
-
-    b. Numeric keyfields last
-
-2. With Referenced for master/detail (e.g., Order before Customer)
-
-    a. Generated child views first
-
-3. Predictive Joins (e.g, ProductName on Order+OrderDetail
-
-    a. Note - *not* generated for edit/add, else you get fab "key errors"
-
 
 
 ## Install
@@ -137,8 +118,3 @@ cd nw
 export FLASK_APP=app
 flask run
 ```
-
-***
-## Screenshot
-    
-![image](https://drive.google.com/uc?export=view&id=1Q3cG-4rQ6Q6RdZppvkrQzCDhDYHnk-F6)

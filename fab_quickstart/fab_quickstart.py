@@ -45,7 +45,6 @@ import logging
 import datetime
 from typing import NewType
 import sys
-import logging
 import os
 import sqlalchemy
 import sqlalchemy.ext
@@ -75,7 +74,7 @@ class FabQuickStart(object):
             nom in French
     """
     _favorite_names = []  # ["name", "description"]
-    _favorite_names_str = "name, description"  # users might supply "name, description"
+    _favorite_names_str = "name description"  # users might supply "nom, description"
 
     _indent = "   "
     _tables_generated = set()  # to address "generate children first"
@@ -104,7 +103,7 @@ class FabQuickStart(object):
         if ("fab-quickstart" in cwd and "nw" not in cwd):
             cwd = cwd.replace("fab-quickstart", "fab-quickstart/nw", 1)
             self._result += "Debug cmd override: " + cwd + "\n\n"
-            print (self._result)
+            # print (self._result)
         self._result += '"""\n\n'
         metadata = self.find_meta_data(cwd)
         meta_tables = metadata.tables
@@ -261,7 +260,7 @@ class FabQuickStart(object):
                 argument1 a_table_def - TableModelInstance
 
             Returns
-                string class and add_view for given table.  FIXME
+                list_columns = [...] - favorites / joins first, not too many
         """
         return self.gen_columns(a_table_def, "list_columns = [", 2, 5, 0)
 
@@ -305,6 +304,8 @@ class FabQuickStart(object):
         id_column_names = set()
         processed_column_names = set()
         result += ""
+        if (a_table_def.name == "OrderDetail"):
+            result += "\n"  # just for debug stop
 
         favorite_column_name = self.favorite_column_name(a_table_def)
         column_count = 1
