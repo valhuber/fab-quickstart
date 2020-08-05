@@ -33,7 +33,7 @@ def main(favorites):
             4. fab_quickstart\r
                 dev mode\r
                     cd nw\r
-                    python ../fab_quickstart/cli.py # TODO failing\r
+                    python ../fab_quickstart/cli.py\r
             5. copy output over app/views.py
             6. cd my_project; flask run
     """
