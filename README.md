@@ -4,7 +4,7 @@ __fab_quickstart__ generates Flask Application Builder `views.py` files, to crea
 ## Features
 Generated fab pages look like as shown below:
 1. __Multi-page:__ apps incude 1 page per table
-1. __Multi-table:__ pages includes `related_views` for each related child table, and join in parent data
+1. __Multi-table:__ pages include `related_views` for each related child table, and join in parent data
 1. __Favorite field first:__ first-displayed field is "name", or _contains_ "name" (configurable)
 1. __Predictive joins:__ favorite field of each parent is shown (product _name_ - not product _id_)
 1. __Ids last:__ such boring fields are not shown on lists, and at the end on other pages
