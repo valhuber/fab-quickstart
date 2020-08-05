@@ -55,8 +55,10 @@ appbuilder.add_view(
 
 This project generates the `views.py` file from the `models.py` file, to save time and reduce learning curve.
 
+## Usage
+Follow the steps below to install, generate an app, and run it.
 
-## Install fab_quickstart (planned)
+### Install fab_quickstart (planned)
 ```
 cd <project>  # fab directory containing `config.py` file
 pip install fab-quickstart
@@ -67,13 +69,13 @@ pip install fab-quickstart
 Automated pip install is under construction.  Until complete, please follow the __Explore__ instructions, below.
 
 
-## Generate views.py
+### Generate views.py
 ```
 fab-quickstart
 # copy generated output over your views.py file
 ```
 
-## Run generated app
+### Run generated app
 Run fab to run the app:
 ```
 cd project
