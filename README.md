@@ -88,7 +88,7 @@ flask run
 ***
 ## Explore fab_quickstart
 
-This project contains 2 main folders:
+This project contains 2 main folders ([see the wiki for a screen shot](https://github.com/valhuber/fab-quickstart/wiki):
 1. `nw`: is a fab project for a sqlite version northwind (nw), for illustration and testing.
 It was built using the [QuickStart procedure](https://sites.google.com/view/app-logic-server/python-fab).
 1. `fab_quickstart` code; 2 main files, both of which are executable as described below.
