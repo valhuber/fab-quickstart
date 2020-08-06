@@ -6,6 +6,11 @@ pyinstaller cli.py   # fails...
     This page: https://pyinstaller.readthedocs.io/en/stable/when-things-go-wrong.html
     says set DYLD_LIBRARY_PATH
 
+    pyenv install 3.8-dev  -- same result
+
+    https://stackoverflow.com/questions/43067039/pyinstaller-error-oserror-python-library-not-found-libpython3-4mu-so-1-0-lib
+      libpython3.4m.so.1.0 --> /usr/lib -- but can't find mac version
+
 so...
     export DYLD_LIBRARY_PATH=/Users/val/.pyenv/versions/3.8.3/lib/python3.8
 
