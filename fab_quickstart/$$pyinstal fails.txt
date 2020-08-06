@@ -1,7 +1,10 @@
+trying to
+    cd fab_quickstart
+    pyinstaller cli.py
+
 running Mac, Catalina
 
-cd fab_quickstart
-pyinstaller cli.py   # fails...
+It fails as follows:
     OSError: Python library not found: libpython3.8.dylib, libpython3.8m.dylib, Python, .Python
         This would mean your Python installation doesn't come with proper library files.
         This usually happens by missing development package, or unsuitable build parameters of Python installation.
@@ -11,10 +14,44 @@ pyinstaller cli.py   # fails...
         * apt-get install python-dev
         * If you're building Python by yourself, please rebuild your Python with `--enable-shared` (or, `--enable-framework` on Darwin)
 
+
+Research found these suggestions, all failed in same way
+
     python installed via pyenv install 3.8.3, at:
         /Users/val/.pyenv/versions/3.8.3/lib/python3.8
 
-Research found these suggestions, all failed in same way
+    per https://stackoverflow.com/questions/32578106/how-to-install-python-devel-in-mac-os
+        brew reinstall python 
+            val@valMbp ~ % brew reinstall python
+                ==> Downloading https://homebrew.bintray.com/bottles/python%403.8-3.8.5.catalina.bottle.tar.gz
+                Already downloaded: /Users/val/Library/Caches/Homebrew/downloads/9dd7cd94f1e3f75a7f2fe63c7333d9de7e8241f212eeaa1e774c45fff2da63f8--python@3.8-3.8.5.catalina.bottle.tar.gz
+                ==> Reinstalling python@3.8 
+                ==> Pouring python@3.8-3.8.5.catalina.bottle.tar.gz
+                ==> /usr/local/Cellar/python@3.8/3.8.5/bin/python3 -s setup.py --no-user-cfg install --force --verbose --install-scripts=/usr/local/Cellar/p
+                ==> /usr/local/Cellar/python@3.8/3.8.5/bin/python3 -s setup.py --no-user-cfg install --force --verbose --install-scripts=/usr/local/Cellar/p
+                ==> /usr/local/Cellar/python@3.8/3.8.5/bin/python3 -s setup.py --no-user-cfg install --force --verbose --install-scripts=/usr/local/Cellar/p
+                ==> Caveats
+                Python has been installed as
+                /usr/local/bin/python3
+
+                Unversioned symlinks `python`, `python-config`, `pip` etc. pointing to
+                `python3`, `python3-config`, `pip3` etc., respectively, have been installed into
+                /usr/local/opt/python@3.8/libexec/bin
+
+                You can install Python packages with
+                pip3 install <package>
+                They will install into the site-package directory
+                /usr/local/lib/python3.8/site-packages
+
+                See: https://docs.brew.sh/Homebrew-and-Python
+                ==> Summary
+                🍺  /usr/local/Cellar/python@3.8/3.8.5: 4,331 files, 67MB
+                Removing: /usr/local/Cellar/python/2.7.11... (5,052 files, 68.0MB)
+                Removing: /Users/val/Library/Caches/Homebrew/python@3.8--3.8.3.tar.xz... (17MB)
+                Removing: /Users/val/Library/Caches/Homebrew/python@3.8--setuptools--46.0.0.zip... (841.5KB)
+                Removing: /Users/val/Library/Caches/Homebrew/python@3.8--pip--20.0.2.tar.gz... (1.4MB)
+                Removing: /Users/val/Library/Caches/Homebrew/python@3.8--patch--c47680c85f201f5830bf71741f09ece031b99386040f3c70b20190b4c47fb81d.patch... (2KB)
+
 
     This page: https://pyinstaller.readthedocs.io/en/stable/when-things-go-wrong.html
     says set DYLD_LIBRARY_PATH  -- same result
