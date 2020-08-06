@@ -73,24 +73,30 @@ class FabQuickStart(object):
             name in English
             nom in French
     """
-    _favorite_names = []  # ["name", "description"]
-    _favorite_names_str = "name description"  # users might supply "nom, description"
+    _favorite_names_list = []  # ["name", "description"]
+    favorite_names = "name description"  # e.g. "nom, description"
+
+    _non_favorite_names_list = []
+    non_favorite_names = "id"
 
     _indent = "   "
     _tables_generated = set()  # to address "generate children first"
     num_pages_generated = 0
     num_related = 0
 
-    def run(self, a_favorites_str: str) -> str:
+    def run(self) -> str:
         """
             Returns a string of views.py content
 
-            This is the main entry.
+            This is the main entry.  Typical calling sequence:\r
+                qs = FabQuickStart()\r
+                qs.favorite_names = "nom description"\r
+                qs.non_favorite_names = "id"\r
 
             Parameters:
-                argument1 a_favorites_str - TableModelInstance
         """
-        self._favorite_names = a_favorites_str.split()
+        self._favorite_names_list = self.favorite_names.split()
+        self._non_favorite_names_list = self.non_favorite_names.split()
 
         cwd = os.getcwd()
         self._result += '"""'
@@ -98,7 +104,10 @@ class FabQuickStart(object):
                          + "Current Working Directory: " + cwd + "\n\n"
                          + "From: " + sys.argv[0] + "\n\n"
                          + "Using Python: " + sys.version + "\n\n"
-                         + "Favorites: " + str(self._favorite_names) + "\n\n"
+                         + "Favorites: "
+                         + str(self._favorite_names_list) + "\n\n"
+                         + "Non Favorites: "
+                         + str(self._non_favorite_names_list) + "\n\n"
                          + "At: " + str(datetime.datetime.now()) + "\n\n")
         if ("fab-quickstart" in cwd and "nw" not in cwd):
             cwd = cwd.replace("fab-quickstart", "fab-quickstart/nw", 1)
@@ -310,7 +319,7 @@ class FabQuickStart(object):
         favorite_column_name = self.favorite_column_name(a_table_def)
         column_count = 1
         id_column_count = 0
-        result += '"' + favorite_column_name + '"'
+        result += '"' + favorite_column_name + '"'  # todo hmm emp territory
         processed_column_names.add(favorite_column_name)
 
         predictive_joins = self.predictive_join_columns(a_table_def)
@@ -326,11 +335,11 @@ class FabQuickStart(object):
         for each_column in columns:
             if each_column.name in processed_column_names:
                 continue
-            if "id" in each_column.name.lower():  # ids are boring - do at end
+            if (self.is_non_favorite_name(each_column.name.lower())):
                 id_column_names.add(each_column.name)
-                continue
+                continue  # ids are boring - do at end
             column_count += 1
-            if column_count > a_max_columns:  # - Todo - make external
+            if column_count > a_max_columns:  # - Todo - maybe cmd arg?
                 break
             if column_count > 1:
                 result += ", "
@@ -369,6 +378,23 @@ class FabQuickStart(object):
             favorite_column_name = self.favorite_column_name(each_parent)
             result.add(each_parent_name + "." + favorite_column_name)
         return result
+
+    def is_non_favorite_name(self, a_name: str) -> bool:
+        """
+        Whether a_name is non-favorite (==> display at end, e.g., 'Id')
+
+            Parameters
+                argument1 a_name - str  (lower case expected)
+
+            Returns
+                bool
+        """
+        for each_non_favorite_name in self._non_favorite_names_list:
+            if (each_non_favorite_name in a_name):
+                return True
+        return False
+
+
 
     def related_views(self, a_table_def: MetaDataTable) -> str:
         """
@@ -459,7 +485,7 @@ class FabQuickStart(object):
             Returns
                 string of column name that is favorite (e.g., first in list)
         """
-        favorite_names = self._favorite_names
+        favorite_names = self._favorite_names_list
         for each_favorite_name in favorite_names:
             columns = a_table_def.columns
             for each_column in columns:
@@ -502,7 +528,7 @@ if (__name__ == "__main__"):
     log.debug("directly run (without extensions subclass")
 
     fab_quickstart = FabQuickStart()
-    favs = fab_quickstart._favorite_names_str
-    rtnCode = fab_quickstart.run(favs)  # Exception has occurred: SystemExit
+    favs = fab_quickstart.favorite_names
+    rtnCode = fab_quickstart.run()  # Exception has occurred: SystemExit
 
     print(fab_quickstart._result)

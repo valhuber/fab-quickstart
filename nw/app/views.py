@@ -3,14 +3,16 @@ Fab QuickStart 0.1 running
 
 Current Working Directory: /Users/val/python/vscode/fab-quickstart
 
-From: /Users/val/python/vscode/fab-quickstart/fab_quickstart/fab_quickstart.py
+From: /Users/val/python/vscode/fab-quickstart/fab_quickstart/cli.py
 
-Using Python: 3.8.3 (default, Jul 15 2020, 16:38:07) 
+Using Python: 3.8.3 (default, Aug  5 2020, 16:59:52) 
 [Clang 11.0.3 (clang-1103.0.32.62)]
 
 Favorites: ['name', 'description']
 
-At: 2020-08-04 17:42:09.430828
+Non Favorites: ['id']
+
+At: 2020-08-06 06:53:10.736506
 
 Debug cmd override: /Users/val/python/vscode/fab-quickstart/nw
 
@@ -57,13 +59,13 @@ appbuilder.add_view(
 class OrderDetailModelView(ModelView):
    datamodel = SQLAInterface(OrderDetail)
    list_columns = [
-"Id", "Product.ProductName", "Order.ShipName", "UnitPrice", "Quantity"]
+"Id", "Order.ShipName", "Product.ProductName", "UnitPrice", "Quantity"]
    show_columns = [
-"Id", "Product.ProductName", "Order.ShipName", "UnitPrice", "Quantity", "Discount", "OrderId", "ProductId"]
+"Id", "Order.ShipName", "Product.ProductName", "UnitPrice", "Quantity", "Discount", "ProductId", "OrderId"]
    edit_columns = [
-"Id", "UnitPrice", "Quantity", "Discount", "OrderId", "ProductId"]
+"Id", "UnitPrice", "Quantity", "Discount", "ProductId", "OrderId"]
    add_columns = [
-"Id", "UnitPrice", "Quantity", "Discount", "OrderId", "ProductId"]
+"Id", "UnitPrice", "Quantity", "Discount", "ProductId", "OrderId"]
    related_views = []
 
 appbuilder.add_view(
@@ -76,9 +78,9 @@ appbuilder.add_view(
 class OrderModelView(ModelView):
    datamodel = SQLAInterface(Order)
    list_columns = ["ShipName", "Customer.CompanyName", "OrderDate", "RequiredDate", "ShippedDate"]
-   show_columns = ["ShipName", "Customer.CompanyName", "OrderDate", "RequiredDate", "ShippedDate", "ShipVia", "Freight", "ShipAddress", "ShipCity", "ShipRegion", "ShipPostalCode", "ShipCountry", "EmployeeId", "CustomerId", "Id"]
-   edit_columns = ["ShipName", "OrderDate", "RequiredDate", "ShippedDate", "ShipVia", "Freight", "ShipAddress", "ShipCity", "ShipRegion", "ShipPostalCode", "ShipCountry", "EmployeeId", "CustomerId", "Id"]
-   add_columns = ["ShipName", "OrderDate", "RequiredDate", "ShippedDate", "ShipVia", "Freight", "ShipAddress", "ShipCity", "ShipRegion", "ShipPostalCode", "ShipCountry", "EmployeeId", "CustomerId", "Id"]
+   show_columns = ["ShipName", "Customer.CompanyName", "OrderDate", "RequiredDate", "ShippedDate", "ShipVia", "Freight", "ShipAddress", "ShipCity", "ShipRegion", "ShipPostalCode", "ShipCountry", "Id", "EmployeeId", "CustomerId"]
+   edit_columns = ["ShipName", "OrderDate", "RequiredDate", "ShippedDate", "ShipVia", "Freight", "ShipAddress", "ShipCity", "ShipRegion", "ShipPostalCode", "ShipCountry", "Id", "EmployeeId", "CustomerId"]
+   add_columns = ["ShipName", "OrderDate", "RequiredDate", "ShippedDate", "ShipVia", "Freight", "ShipAddress", "ShipCity", "ShipRegion", "ShipPostalCode", "ShipCountry", "Id", "EmployeeId", "CustomerId"]
    related_views = [OrderDetailModelView]
 
 appbuilder.add_view(
@@ -120,8 +122,8 @@ appbuilder.add_view(
 
 class EmployeeTerritoryModelView(ModelView):
    datamodel = SQLAInterface(EmployeeTerritory)
-   list_columns = ["Id", "Territory.TerritoryDescription", "Employee.LastName"]
-   show_columns = ["Id", "Territory.TerritoryDescription", "Employee.LastName", "TerritoryId", "EmployeeId"]
+   list_columns = ["Id", "Employee.LastName", "Territory.TerritoryDescription"]
+   show_columns = ["Id", "Employee.LastName", "Territory.TerritoryDescription", "TerritoryId", "EmployeeId"]
    edit_columns = ["Id", "TerritoryId", "EmployeeId"]
    add_columns = ["Id", "TerritoryId", "EmployeeId"]
    related_views = []
@@ -151,9 +153,9 @@ appbuilder.add_view(
 class ProductModelView(ModelView):
    datamodel = SQLAInterface(Product)
    list_columns = ["ProductName", "QuantityPerUnit", "UnitPrice", "UnitsInStock", "UnitsOnOrder"]
-   show_columns = ["ProductName", "QuantityPerUnit", "UnitPrice", "UnitsInStock", "UnitsOnOrder", "ReorderLevel", "Discontinued", "SupplierId", "CategoryId", "Id"]
-   edit_columns = ["ProductName", "QuantityPerUnit", "UnitPrice", "UnitsInStock", "UnitsOnOrder", "ReorderLevel", "Discontinued", "SupplierId", "CategoryId", "Id"]
-   add_columns = ["ProductName", "QuantityPerUnit", "UnitPrice", "UnitsInStock", "UnitsOnOrder", "ReorderLevel", "Discontinued", "SupplierId", "CategoryId", "Id"]
+   show_columns = ["ProductName", "QuantityPerUnit", "UnitPrice", "UnitsInStock", "UnitsOnOrder", "ReorderLevel", "Discontinued", "Id", "CategoryId", "SupplierId"]
+   edit_columns = ["ProductName", "QuantityPerUnit", "UnitPrice", "UnitsInStock", "UnitsOnOrder", "ReorderLevel", "Discontinued", "Id", "CategoryId", "SupplierId"]
+   add_columns = ["ProductName", "QuantityPerUnit", "UnitPrice", "UnitsInStock", "UnitsOnOrder", "ReorderLevel", "Discontinued", "Id", "CategoryId", "SupplierId"]
    related_views = [OrderDetailModelView]
 
 appbuilder.add_view(
@@ -211,9 +213,9 @@ appbuilder.add_view(
 class TerritoryModelView(ModelView):
    datamodel = SQLAInterface(Territory)
    list_columns = ["TerritoryDescription"]
-   show_columns = ["TerritoryDescription", "RegionId", "Id"]
-   edit_columns = ["TerritoryDescription", "RegionId", "Id"]
-   add_columns = ["TerritoryDescription", "RegionId", "Id"]
+   show_columns = ["TerritoryDescription", "Id", "RegionId"]
+   edit_columns = ["TerritoryDescription", "Id", "RegionId"]
+   add_columns = ["TerritoryDescription", "Id", "RegionId"]
    related_views = [EmployeeTerritoryModelView]
 
 appbuilder.add_view(

@@ -6,8 +6,12 @@ import fab_quickstart
 @click.option('--favorites',
               default="name description",
               prompt="Favorite Column Names",
-              help="Word(s) used to indentify 'favorite column' (displayed first)")
-def main(favorites):
+              help="Word(s) used to identify 'favorite column' (displayed first)")
+@click.option('--non_favorites',
+              default="id",
+              prompt="Non Favorite Column Names",
+              help="Word(s) used to identify last-shown fields")
+def main(favorites, non_favorites):
     """
         Creates instant web app - generates fab views contents.
 
@@ -38,7 +42,9 @@ def main(favorites):
             6. cd my_project; flask run
     """
     fab_quick_start = fab_quickstart.FabQuickStart()
-    fab_quick_start.run(favorites)
+    fab_quick_start.favorite_names = favorites
+    fab_quick_start.non_favorite_names = non_favorites
+    fab_quick_start.run()
 
     print(fab_quick_start._result)
 

@@ -150,3 +150,4 @@ cd nw
 export FLASK_APP=app
 flask run
 ```
+Login as `admin`, `p`
