@@ -10,6 +10,10 @@ cd /Users/val/python/vsc/fab_nw ; env /Users/val/python/vsc/fab_nw/venv/bin/pyth
 
 cd /Users/val/python/vsc/fab_nw ; env /Users/val/python/vsc/fab_nw/venv/bin/python3.8 /Users/val/.vscode/extensions/ms-python.python-2020.7.96456/pythonFiles/lib/python/debugpy/launcher 59007 -- -m flask run --debugger --reload
 
+8/7
+  Docs: 1 line "Quick Start" link on github, docs ==> wiki??
+  pyinstaller blocker
+    
 
 
 CREATE TABLE IF NOT EXISTS "EmployeeTerritoryFK" 
