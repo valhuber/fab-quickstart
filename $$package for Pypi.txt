@@ -2,6 +2,64 @@ trying to
     cd fab_quickstart
     pyinstaller cli.py
 
+better:
+    
+    source venv/bin/activate
+    
+    python setup.py install
+        which initial laid an .egg??
+    
+
+    or, per: https://packaging.python.org/tutorials/packaging-projects/
+        python3 -m pip install --user --upgrade setuptools wheel
+            but
+                ERROR: Can not perform a '--user' install.
+                    User site-packages are not visible in this virtualenv.
+                    << ignoring the sound of broken glass, we proceed>>
+        python3 setup.py sdist bdist_wheel
+            produced expected output (yes!)
+
+    expected output:
+        FAB_Quickstart-0.9.0-py3-none-any.whl   (13kb)
+        FAB-Quickstart-0.9.0.tar.gz             (12kb)
+
+    now test, using testPi
+
+        https://test.pypi.org/manage/account/#api-tokens
+
+            pypi-AgENdGVzdC5weXBpLm9yZwIkNGI0NWMxYzItZjk1OC00ZWFkLThlMWEtYzhiYjBhMjY0NTQyAAIleyJwZXJtaXNzaW9ucyI6ICJ1c2VyIiwgInZlcnNpb24iOiAxfQAABiAHvj13yN6xFeF9fciblOuNWMN_RJcuecC0OdfiMffUpQ
+
+        deactivate
+
+        python3 -m pip install --user --upgrade twine
+
+        python3 -m twine upload --repository testpypi dist/*
+            __token__
+            << see above >>
+
+            fails:
+                Enter your username: __token__
+                Enter your password: << see above >>
+                Uploading FAB_Quickstart-0.9.0-py3-none-any.whlUploading FAB_Quickstart-0.9.0-py3-none-any.whl
+                100%|██████████████████████████████████████████████████████████████| 26.7k/26.7k [00:00<00:00, 164kB/s]
+                Received "503: Backend is unhealthy" Package upload appears to have failed.  Retry 1 of 5
+                Uploading FAB_Quickstart-0.9.0-py3-none-any.whl
+                100%|██████████████████████████████████████████████████████████████| 26.7k/26.7k [00:00<00:00, 238kB/s]
+                Received "503: Backend is unhealthy" Package upload appears to have failed.  Retry 2 of 5
+                Uploading FAB_Quickstart-0.9.0-py3-none-any.whl
+                100%|██████████████████████████████████████████████████████████████| 26.7k/26.7k [00:00<00:00, 221kB/s]
+                Received "503: Backend is unhealthy" Package upload appears to have failed.  Retry 3 of 5
+                Uploading FAB_Quickstart-0.9.0-py3-none-any.whl
+                100%|██████████████████████████████████████████████████████████████| 26.7k/26.7k [00:00<00:00, 238kB/s]
+                Received "503: Backend is unhealthy" Package upload appears to have failed.  Retry 4 of 5
+                Uploading FAB_Quickstart-0.9.0-py3-none-any.whl
+                100%|██████████████████████████████████████████████████████████████| 26.7k/26.7k [00:00<00:00, 224kB/s]
+                Received "503: Backend is unhealthy" Package upload appears to have failed.  Retry 5 of 5
+                NOTE: Try --verbose to see response content.
+                HTTPError: 503 Service Unavailable from https://test.pypi.org/legacy/
+                Backend is unhealthy
+                val@valMbp fab-quickstart % 
+
 running Mac, Catalina
 
 It fails as follows:
