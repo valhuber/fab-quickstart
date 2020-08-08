@@ -27,7 +27,7 @@ better:
 
         https://test.pypi.org/manage/account/#api-tokens
 
-            pypi-AgENdGVzdC5weXBpLm9yZwIkNGI0NWMxYzItZjk1OC00ZWFkLThlMWEtYzhiYjBhMjY0NTQyAAIleyJwZXJtaXNzaW9ucyI6ICJ1c2VyIiwgInZlcnNpb24iOiAxfQAABiAHvj13yN6xFeF9fciblOuNWMN_RJcuecC0OdfiMffUpQ
+            
 
         deactivate
 
@@ -35,7 +35,7 @@ better:
 
         python3 -m twine upload --repository testpypi dist/*
             __token__
-            << see above >>
+            << generated token >>
 
             fails:
                 Enter your username: __token__
