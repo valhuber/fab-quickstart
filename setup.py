@@ -38,7 +38,7 @@ setup(
     packages=find_packages(),
     package_data={"": ["LICENSE"]},
     entry_points={
-        "console_scripts": ["fab_quickstart.cli:start"]
+        "console_scripts": ["fabqs=fab_quickstart.cli:start"]
     },
     include_package_data=True,
     zip_safe=False,

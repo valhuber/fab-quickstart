@@ -13,6 +13,7 @@ cd /Users/val/python/vsc/fab_nw ; env /Users/val/python/vsc/fab_nw/venv/bin/pyth
 8/7
   Docs: 1 line "Quick Start" link on github, docs ==> wiki??
   pyinstaller blocker
+    python setup.py install
     
 
 

@@ -1,1 +1,4 @@
 .DS_Store
+/build/
+/dist/
+/FAB_Quickstart.egg-info/
