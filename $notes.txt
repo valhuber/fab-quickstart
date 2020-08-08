@@ -1,6 +1,4 @@
-
-
-Prior notes follow:
+Informal project notes
 
 7/24
     sqlagenerator does not generate fKeys or relns
@@ -14,7 +12,13 @@ cd /Users/val/python/vsc/fab_nw ; env /Users/val/python/vsc/fab_nw/venv/bin/pyth
   Docs: 1 line "Quick Start" link on github, docs ==> wiki??
   pyinstaller blocker
     python setup.py install
-    
+
+8/8
+  minor
+    cli unable to show version
+  major
+    unable to upload ot Pypi - see $$package for Pypi.txt
+    fab: OrderDetail fails on "show" page    
 
 
 CREATE TABLE IF NOT EXISTS "EmployeeTerritoryFK" 
@@ -83,73 +87,3 @@ drop table old;
             """
             # models = importlib.import_module(import_module)  # ModuleNotFoundError
 
-
-(venv) val@valMbp fab_quickstart % pyinstaller cli.py     
-56 INFO: PyInstaller: 3.6
-56 INFO: Python: 3.8.3
-69 INFO: Platform: macOS-10.15.6-x86_64-i386-64bit
-73 INFO: wrote /Users/val/python/vscode/fab-quickstart/fab_quickstart/cli.spec
-78 INFO: UPX is not available.
-79 INFO: Extending PYTHONPATH with paths
-['/Users/val/python/vscode/fab-quickstart',
- '/Users/val/python/vscode/fab-quickstart/fab_quickstart']
-80 INFO: checking Analysis
-80 INFO: Building Analysis because Analysis-00.toc is non existent
-80 INFO: Initializing module dependency graph...
-82 INFO: Caching module graph hooks...
-89 INFO: Analyzing base_library.zip ...
-2788 INFO: Processing pre-find module path hook   distutils
-2789 INFO: distutils: retargeting to non-venv dir '/Users/val/.pyenv/versions/3.8.3/lib/python3.8'
-5441 INFO: Caching module dependency graph...
-5563 INFO: running Analysis Analysis-00.toc
-5570 INFO: Analyzing /Users/val/python/vscode/fab-quickstart/fab_quickstart/cli.py
-5954 INFO: Processing module hooks...
-5954 INFO: Loading module hook "hook-pkg_resources.py"...
-6335 INFO: Processing pre-safe import module hook   win32com
-6402 INFO: Excluding import '__main__'
-6403 INFO:   Removing import of __main__ from module pkg_resources
-6403 INFO: Loading module hook "hook-xml.etree.cElementTree.py"...
-6404 INFO: Loading module hook "hook-lib2to3.py"...
-6407 INFO: Loading module hook "hook-encodings.py"...
-6482 INFO: Loading module hook "hook-sysconfig.py"...
-6497 INFO: Loading module hook "hook-xml.py"...
-6562 INFO: Loading module hook "hook-pydoc.py"...
-6562 INFO: Loading module hook "hook-distutils.py"...
-6579 INFO: Looking for ctypes DLLs
-6658 INFO: Analyzing run-time hooks ...
-6662 INFO: Including run-time hook 'pyi_rth_multiprocessing.py'
-6665 INFO: Including run-time hook 'pyi_rth_pkgres.py'
-6672 INFO: Looking for dynamic libraries
-6805 INFO: Looking for eggs
-6805 INFO: Python library not in binary dependencies. Doing additional searching...
-Traceback (most recent call last):
-  File "/Users/val/python/vscode/fab-quickstart/venv/bin/pyinstaller", line 8, in <module>
-    sys.exit(run())
-  File "/Users/val/python/vscode/fab-quickstart/venv/lib/python3.8/site-packages/PyInstaller/__main__.py", line 114, in run
-    run_build(pyi_config, spec_file, **vars(args))
-  File "/Users/val/python/vscode/fab-quickstart/venv/lib/python3.8/site-packages/PyInstaller/__main__.py", line 65, in run_build
-    PyInstaller.building.build_main.main(pyi_config, spec_file, **kwargs)
-  File "/Users/val/python/vscode/fab-quickstart/venv/lib/python3.8/site-packages/PyInstaller/building/build_main.py", line 734, in main
-    build(specfile, kw.get('distpath'), kw.get('workpath'), kw.get('clean_build'))
-  File "/Users/val/python/vscode/fab-quickstart/venv/lib/python3.8/site-packages/PyInstaller/building/build_main.py", line 681, in build
-    exec(code, spec_namespace)
-  File "/Users/val/python/vscode/fab-quickstart/fab_quickstart/cli.spec", line 6, in <module>
-    a = Analysis(['cli.py'],
-  File "/Users/val/python/vscode/fab-quickstart/venv/lib/python3.8/site-packages/PyInstaller/building/build_main.py", line 244, in __init__
-    self.__postinit__()
-  File "/Users/val/python/vscode/fab-quickstart/venv/lib/python3.8/site-packages/PyInstaller/building/datastruct.py", line 160, in __postinit__
-    self.assemble()
-  File "/Users/val/python/vscode/fab-quickstart/venv/lib/python3.8/site-packages/PyInstaller/building/build_main.py", line 478, in assemble
-    self._check_python_library(self.binaries)
-  File "/Users/val/python/vscode/fab-quickstart/venv/lib/python3.8/site-packages/PyInstaller/building/build_main.py", line 568, in _check_python_library
-    python_lib = bindepend.get_python_library_path()
-  File "/Users/val/python/vscode/fab-quickstart/venv/lib/python3.8/site-packages/PyInstaller/depend/bindepend.py", line 945, in get_python_library_path
-    raise IOError(msg)
-OSError: Python library not found: .Python, Python, libpython3.8m.dylib, libpython3.8.dylib
-    This would mean your Python installation doesn't come with proper library files.
-    This usually happens by missing development package, or unsuitable build parameters of Python installation.
-
-    * On Debian/Ubuntu, you would need to install Python development packages
-      * apt-get install python3-dev
-      * apt-get install python-dev
-    * If you're building Python by yourself, please rebuild your Python with `--enable-shared` (or, `--enable-framework` on Darwin)

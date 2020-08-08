@@ -1,6 +1,26 @@
 import click
 import fab_quickstart
 
+@click.group()
+def fab():
+    """ FAB flask group commands"""
+    pass
+
+
+@fab.command("version")  # FIXME not working
+def version():
+    """
+        FAB Quickstart package version
+    """
+    print("TODO - add version")
+    click.echo(
+        click.style(
+            "F.A.B Version: {0}.".format(fab_quickstart.__version__),
+            bg="blue",
+            fg="white",
+        )
+    )
+
 
 @click.command()
 @click.option('--favorites',
@@ -46,10 +66,11 @@ def main(favorites, non_favorites):
     fab_quick_start.non_favorite_names = non_favorites
     fab_quick_start.run()
 
-    print(fab_quick_start._result)
+    print("\n" + fab_quick_start._result)
 
 
 def start():
+    print("\nFAB Quickstart Here\n")
     main(obj={})
 
 

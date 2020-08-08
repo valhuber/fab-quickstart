@@ -4,14 +4,6 @@
 This is the super class
     Extended by build_views, for overides as required.
 
-Discussion 8/6
-    Project rename to fab_quickstart, with wiki FAB quickstart
-    Code cleanup: flake8, black (now activated, done?)
-    Standard out: print vs. log (done)
-    Annotations (done)
-    Click Command line Args (done)
-    Command Line Packaging (TODO)
-
 Features:
     1. Generate views.py with 1 class per (not ab_) table
         a. "Favorite" fields (contains name) first
@@ -281,6 +273,9 @@ class FabQuickStart(object):
 
     def add_columns(self, a_table_def: MetaDataTable):
         return self.gen_columns(a_table_def, "add_columns = [", 99, 999, 999)
+
+    def query_columns(self, a_table_def: MetaDataTable):
+        return self.gen_columns(a_table_def, "query_columns = [", 99, 999, 999)
 
     def gen_columns(self,
                     a_table_def: MetaDataTable,
