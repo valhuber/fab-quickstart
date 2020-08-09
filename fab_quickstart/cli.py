@@ -21,7 +21,19 @@ def version():
         )
     )
 
+"""
+    uploaded to https://test.pypi.org/project/FAB-Quickstart/0.9.0/
+    so
+        pip install -i https://test.pypi.org/simple/ FAB-Quickstart==0.9.0
+        fabqs
 
+    FIXME
+        
+        it runs!  but... for fab consistency... should it be??
+
+        flask fab quickstart
+
+"""
 @click.command()
 @click.option('--favorites',
               default="name description",

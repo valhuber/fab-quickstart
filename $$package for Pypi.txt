@@ -34,6 +34,20 @@ better:
             << generated token >>
 
             View at https://test.pypi.org/project/FAB-Quickstart/0.9.0/
+    
+    to re-upload
+
+        change version in fab_quickstart.__init__
+        delete dist folder
+
+        python3 -m pip install --user --upgrade twine
+
+        see https://stackoverflow.com/questions/52016336/how-to-upload-new-versions-of-project-to-pypi-with-twine,
+            so...
+
+        python3 -m twine upload  --skip-existing --repository testpypi dist/*
+
+        Worked: see https://test.pypi.org/project/FAB-Quickstart/0.9.1/
 
     now install it
 
