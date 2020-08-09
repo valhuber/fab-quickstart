@@ -1,13 +1,9 @@
-trying to
-    cd fab_quickstart
-    pyinstaller cli.py  # that fails, move to python setup...
-
-better:
+PyPi Packaging instructions
     
     source venv/bin/activate
     
     python setup.py install
-        which initial laid an .egg??
+        which initial laid a .egg??
     
 
     create build: https://packaging.python.org/tutorials/packaging-projects/

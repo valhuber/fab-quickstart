@@ -41,6 +41,7 @@ from sqlalchemy import MetaData
 import inspect
 import importlib
 import click
+import __init__
 
 #  MetaData = NewType('MetaData', object)
 MetaDataTable = NewType('MetaDataTable', object)
@@ -89,7 +90,7 @@ class FabQuickStart(object):
 
         cwd = os.getcwd()
         self._result += '"""'
-        self._result += ("\nFab QuickStart 0.1 running\n\n"
+        self._result += ("\nFab QuickStart " + __init__.__version__ + "\n\n"
                          + "Current Working Directory: " + cwd + "\n\n"
                          + "From: " + sys.argv[0] + "\n\n"
                          + "Using Python: " + sys.version + "\n\n"

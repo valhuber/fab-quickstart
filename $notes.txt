@@ -1,4 +1,4 @@
-Informal project notes
+Informal project notes.  See $$package for Pypi deployment instructions.
 
 7/24
     sqlagenerator does not generate fKeys or relns
@@ -15,10 +15,8 @@ cd /Users/val/python/vsc/fab_nw ; env /Users/val/python/vsc/fab_nw/venv/bin/pyth
 
 8/8
   minor
-    cli unable to show version
-    cli name (more like flask fab quickstart, or flask fab generate-views?)
-    diagram on PyPi does not work (bad rst image)
-    Project Links look wrong
+    cli unable to show version (want: fab-quickstart version)
+    cli name (more like flask fab quickstart, or flask fab generate-views, or?)
   major
     fab: OrderDetail fails on "show" page    
 

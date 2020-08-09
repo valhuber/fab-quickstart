@@ -19,18 +19,13 @@ Generated fab pages look as shown below:
 
 #. **Multi-table:** pages include `related_views` for each related child table, and join in parent data
 
-#. **Favorite field first:** first-displayed field is "name", or _contains_ "name" (configurable)
+#. **Favorite field first:** first-displayed field is "name", or `contains` "name" (configurable)
 
 #. **Predictive joins:** favorite field of each parent is shown (product _name_ - not product _id_)
 
 #. **Ids last:** such boring fields are not shown on lists, and at the end on other pages
 
-
-Generated Application:
-.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
-:target: https://drive.google.com/uc?export=view&id=1Q3cG-4rQ6Q6RdZppvkrQzCDhDYHnk-F6
-
-
+.. image:: https://drive.google.com/uc?export=view&id=1Q3cG-4rQ6Q6RdZppvkrQzCDhDYHnk-F6
 
 Background:
 -----------

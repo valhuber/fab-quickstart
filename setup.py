@@ -27,8 +27,8 @@ project_urls = {
 
 setup(
     name="FAB-Quickstart",
-    version=version,
-    url="https://github.com/valhuber/fab_quickstart/",
+    version=version,  
+    url="https://github.com/valhuber/fab-quickstart",
     license="BSD",
     author="Val Huber",
     author_email="valjhuber@gmail.com",
