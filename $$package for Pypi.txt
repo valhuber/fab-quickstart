@@ -33,6 +33,8 @@ PyPi Packaging instructions
             __token__
             << generated token >>
 
+            first time: python3 setup.py sdist bdist_wheel
+            
             View at https://test.pypi.org/project/FAB-Quickstart/0.9.0/
     
     to re-upload
