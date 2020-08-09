@@ -58,20 +58,15 @@ This project generates the `views.py` file from the `models.py` file, to save ti
 ## Usage
 Follow the steps below to install, generate an app, and run it.
 
-### Install fab_quickstart (planned)
+### Install fab_quickstart
 ```
 cd <project>  # fab directory containing `config.py` file
 pip install fab-quickstart
 ```
-```diff
-- Planned
-```
-Automated pip install is under construction.  Until complete, please follow the __Explore__ instructions, below.
-
 
 ### Generate views.py
 ```
-fab-quickstart
+fab-qs
 # copy generated output over your views.py file
 ```
 
@@ -88,66 +83,3 @@ flask run
 ***
 ## Explore fab_quickstart
 
-This project contains 2 main folders ([see the wiki for a screen shot](https://github.com/valhuber/fab-quickstart/wiki):
-1. `nw`: is a fab project for a sqlite version northwind (nw), for illustration and testing.
-It was built using the [QuickStart procedure](https://sites.google.com/view/app-logic-server/python-fab).
-1. `fab_quickstart` code; 2 main files, both of which are executable as described below.
-   1. The main code is `fab_quickstart/fab_quickstart_base.py`.
-   1. CLI code is `fab_quickstart/cli.py`
-
-
-### Pre Reqs
-
-To get started, you will need:
-
-* Python3: run the windows installer; on mac/Unix, consider [using brew](https://opensource.com/article/19/5/python-3-default-mac#what-to-do)
-* virtualenv - see [here](https://www.google.com/url?q=https%3A%2F%2Fpackaging.python.org%2Fguides%2Finstalling-using-pip-and-virtual-environments%2F%23creating-a-virtual-environment&sa=D&sntz=1&usg=AFQjCNEu-ZbYfqRMjNQ0D0DqU1mhFpDYmw)  (e.g.,  `pip install virtualenv`)
-* [VSCode](https://code.visualstudio.com) - any ide will do, though different install / generate / run instructions apply
-
-
-### Project Installation
-Get the project:
-```
-git clone https://github.com/valhuber/fab-quickstart.git
-```
-
-In VSCode Python Debug Console:
-
-```
-cd fab_quickstart
-virtualenv venv
-# windows: .\venv\Scripts\activate
-source venv/bin/activate
-pip install -r requirements.txt
-```
-
-In VSCode, you must also choose your Python Interpreter (e.g., `.\venv\bin\python`).
-
-Note: Windows Powershell requires privileges as described [here](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershel)
-
-
-### Generate views.py
-
-Then, in VSCode, select Launch Config: `Python: Run Current File`,
-and run any of:
-* `fab_quickstart/cli.py`, or
-* `fab_quickstart/fab_quickstart.py`
-
-Or, in a terminal window:
-```
-cd nw
-python ../fab_quickstart/cli.py
-```
-
-Copy the console output over the `nw/app/views.py` file.
-
-
-### Run generated fab app
-
-In a terminal window:
-```
-cd nw
-export FLASK_APP=app
-flask run
-```
-Login as `admin`, `p`
