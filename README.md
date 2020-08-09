@@ -2,7 +2,7 @@
 __fab_quickstart__ generates Flask Application Builder `views.py` files, to create instant multi-page, multi-table apps.
 
 ## Features
-Generated fab pages look like as shown below:
+Generated fab pages look as shown below:
 1. __Multi-page:__ apps incude 1 page per table
 1. __Multi-table:__ pages include `related_views` for each related child table, and join in parent data
 1. __Favorite field first:__ first-displayed field is "name", or _contains_ "name" (configurable)
@@ -13,7 +13,7 @@ Generated fab pages look like as shown below:
 
 
 ## Background
-[Flask Application Builder (FAB)](https://github.com/dpgaspar/Flask-AppBuilder) provides a rapid means for building web pages for database apps, based on Python and Flask.  See the wiki for a [Quick Start for using FAB](https://github.com/valhuber/fab-quickstart/wiki).
+[Flask Application Builder (FAB)](https://github.com/dpgaspar/Flask-AppBuilder) provides a rapid means for building web pages for database apps, based on Python and Flask.  Here is a [Quick Start for using FAB](https://github.com/valhuber/fab-quickstart/wiki).
 
 Key FAB inputs are:
 
@@ -82,4 +82,4 @@ flask run
 
 ***
 ## Explore fab_quickstart
-
+Use this to [explore the FAB Quick Start Utility](https://github.com/valhuber/fab-quickstart/wiki/Explore-fab_quickstart).
