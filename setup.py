@@ -29,9 +29,9 @@ setup(
     author="Val Huber",
     author_email="valjhuber@gmail.com",
     description=(
-        "Creates FAB view from model, for an instant multi-page, multi-table app."
-        " multi-page: 1 page per table, with page-page navigation for related data."
-        " multi-table: includes related_views, predictive joins."
+        "Creates FAB view from model, for an instant multi-page, multi-table app.\n"
+        "Apps are multi-page: 1 page per table, with page-page navigation for related data.\n"
+        "Pages are multi-table: includes related_views, predictive joins."
     ),
     long_description=desc(),
     long_description_content_type="text/x-rst",

@@ -17,6 +17,7 @@ cd /Users/val/python/vsc/fab_nw ; env /Users/val/python/vsc/fab_nw/venv/bin/pyth
   minor
     cli unable to show version
     cli name (more like flask fab quickstart, or flask fab generate-views?)
+    diagram on PyPi does not work
   major
     fab: OrderDetail fails on "show" page    
 
