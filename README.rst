@@ -4,7 +4,7 @@ Flask App Builder - Quick Start
 Create `Flask App Builder <www.github.com/dpgaspar/Flask-AppBuilder>`_ ``views.py`` file,
 directly from ``models.py``, for an instant multi-page, multi-table app.
 
-Use this `Quick Start <www.github.com/valhuber/fab-quickstart/wiki>`_ to create the app shown below in 10 minutes.
+Use this `Quick Start <https://github.com/valhuber/fab-quickstart/wiki>`_ to create the app shown below in 10 minutes.
 
 
 Change Log
@@ -28,7 +28,6 @@ Features:
 
 Normally, you hand-code segments like this in the ``views.py`` file for each page,
 like this: ::
-
     class OrderModelView(ModelView):
         datamodel = SQLAInterface(Order)
         list_columns = ["ShipName", "Customer.CompanyName", ... "EmployeeId", "CustomerId"]
@@ -53,11 +52,16 @@ resulting in apps like shown below:
 #. **Ids last:** such boring fields are not shown on lists, and at the end on other pages
 
 
+Generated Application:
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
-    :target: https://drive.google.com/uc?export=view&id=1Q3cG-4rQ6Q6RdZppvkrQzCDhDYHnk-F6
+:target: https://drive.google.com/uc?export=view&id=1Q3cG-4rQ6Q6RdZppvkrQzCDhDYHnk-F6
 
 
 
 Depends on:
 -----------
 - Flask-AppBuilder
+
+More information:
+-----------------
+The `FAB Quick Start github <https://github.com/valhuber/fab-quickstart#fab-quick-start---build-viewspy>`_ for more information, and explore the code.
