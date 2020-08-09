@@ -36,7 +36,6 @@ fab-qs
 Copy the console output to your `views.py` file, and run fab / flask app:
 
 ```
-cd project
 export FLASK_APP=app
 flask run
 ```
