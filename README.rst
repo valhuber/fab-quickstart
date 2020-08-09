@@ -1,45 +1,19 @@
-Flask App Builder - Quick Start
-===============================
+FAB Quick Start Utility - build ``views.py``
+============================================
 
-Create `Flask App Builder <www.github.com/dpgaspar/Flask-AppBuilder>`_ ``views.py`` file,
+The ``fab-quickstart`` command line utility creates the
+`Flask App Builder <www.github.com/dpgaspar/Flask-AppBuilder>`_ ``views.py`` file,
 directly from ``models.py``, for an instant multi-page, multi-table app.
 
-Use this `Quick Start <https://github.com/valhuber/fab-quickstart/wiki>`_ to create the app shown below in 10 minutes.
+Use this `FAB Quick Start Guide <https://github.com/valhuber/fab-quickstart/wiki>`_ 
+to create the app shown below in 10 minutes.
 
 
-Change Log
-----------
 
-Initial Version
+Features
+--------
 
-Usage:
-------
-First, create a fab project (e.g., see the `Quick Start <www.github.com/valhuber/fab-quickstart/wiki>`_).
-
-Then, generate the ``views.py`` file like this::
-
-    pip install -i https://test.pypi.org/simple/ FAB-Quickstart==0.9.0
-    fabqs
-
-Copy the console output to your `views.py` file, and run fab / flask app.
-
-Features:
----------
-
-Normally, you hand-code segments like this in the ``views.py`` file for each page,
-like this: ::
-    class OrderModelView(ModelView):
-        datamodel = SQLAInterface(Order)
-        list_columns = ["ShipName", "Customer.CompanyName", ... "EmployeeId", "CustomerId"]
-        show_columns = ["ShipName", "Customer.CompanyName", "OrderDate", ... "ShipCountry", "Id", "EmployeeId", "CustomerId"]
-        edit_columns = ["ShipName", "OrderDate",... "ShipCountry", "Id", "EmployeeId", "CustomerId"]
-        add_columns = ["ShipName", "OrderDate", ... "ShipCountry", "Id", "EmployeeId", "CustomerId"]
-        related_views = [OrderDetailModelView]
-
-        appbuilder.add_view(OrderModelView, "Order List", icon="fa-folder-open-o", category="Menu")
-
-Instead, fab-quickstart generates this file with such segments for each page,
-resulting in apps like shown below:
+Generated fab pages look as shown below:
 
 #. **Multi-page:** apps incude 1 page per table
 
@@ -58,6 +32,35 @@ Generated Application:
 
 
 
+Background:
+-----------
+
+Flask Application Builder (FAB) provides a rapid means for
+building web pages for database apps, based on Python, Flask and sqlalchemy.
+Use the Quick Start Guide (link above) to create the application
+shown above in 10 minutes.
+
+Recall that creating the ``views.py`` file can be
+`tedious <www.github.com/valhuber/fab-quickstart/wiki#key-fab-inputs-modelspy-and-viewspy>`_ .
+This utility generates the ``views.py`` file from the models.py file,
+to save time and reduce learning curve.
+
+Usage:
+------
+First, create a fab project (e.g., see the Quick Start Guide).
+
+Then, generate the ``views.py`` file like this::
+
+    cd <project>  # fab directory containing the config.py file
+    pip install -i https://test.pypi.org/simple/ FAB-Quickstart==0.9.0
+    
+    fabqs
+
+Copy the console output to your `views.py` file, and run fab / flask app::
+
+    export FLASK_APP=app
+    flask run
+
 Depends on:
 -----------
 - Flask-AppBuilder
@@ -65,3 +68,11 @@ Depends on:
 More information:
 -----------------
 The `FAB Quick Start github <https://github.com/valhuber/fab-quickstart#fab-quick-start---build-viewspy>`_ for more information, and explore the code.
+
+
+
+
+Change Log
+----------
+
+Initial Version
