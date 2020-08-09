@@ -13,7 +13,7 @@ Generated fab pages look as shown below:
 
 
 ## Background
-[Flask Application Builder (FAB)](https://github.com/dpgaspar/Flask-AppBuilder) provides a rapid means for building web pages for database apps, based on Python and Flask.  Here is a [Quick Start for using FAB](https://github.com/valhuber/fab-quickstart/wiki).
+[Flask Application Builder (FAB)](https://github.com/dpgaspar/Flask-AppBuilder) provides a rapid means for building web pages for database apps, based on Python, Flask and sqlalchemy.  Here is a [Quick Start for using FAB](https://github.com/valhuber/fab-quickstart/wiki).
 
 Key FAB inputs are:
 
