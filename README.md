@@ -1,5 +1,5 @@
 # FAB Quick Start - build views.py
-__fab_quickstart__ is a command line utility to generate Flask Application Builder `views.py` files, to create instant multi-page, multi-table apps.
+The `fab_quickstart` command line utility generates Flask Application Builder `views.py` files, to create instant multi-page, multi-table apps.
 
 ## Features
 Generated fab pages look as shown below:
