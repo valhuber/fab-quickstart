@@ -15,7 +15,8 @@ Generated fab pages look as shown below:
 
 
 ## Background
-[Flask Application Builder (FAB)](https://github.com/dpgaspar/Flask-AppBuilder) provides a rapid means for building web pages for database apps, based on Python, Flask and sqlalchemy.  Here is a [Quick Start for using FAB](https://github.com/valhuber/fab-quickstart/wiki).
+[Flask Application Builder (FAB)](https://github.com/dpgaspar/Flask-AppBuilder) provides a rapid means for building web pages for database apps, based on Python, Flask and sqlalchemy.  Use this [Quick Start Guide](https://github.com/valhuber/fab-quickstart/wiki) to create the application above in 10 minutes.
+
 
 Recall that creating the `views.py` file can be [tedious](https://github.com/valhuber/fab-quickstart/wiki#key-fab-inputs-modelspy-and-viewspy).  This utility generates the `views.py` file from the `models.py` file, to save time and reduce learning curve.
 
