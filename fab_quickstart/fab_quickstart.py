@@ -14,9 +14,6 @@ Features:
     3. Predictive Joins (ProductName on Order+OrderDetail
         a. Note - *not* generated for edit/add, else you get fab "key errors"
 
-Status:
-    * Technology Preview
-
 Todo:
     * Query_columns
     * OrderDetail - magnifying glass page fails

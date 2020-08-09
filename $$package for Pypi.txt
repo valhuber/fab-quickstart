@@ -42,18 +42,18 @@ better:
     to re-upload
 
         change version in fab_quickstart.__init__
+
         delete dist folder
 
         python3 setup.py sdist bdist_wheel
 
-        see https://stackoverflow.com/questions/52016336/how-to-upload-new-versions-of-project-to-pypi-with-twine,
-            so...
-
         python3 -m twine upload  --skip-existing --repository testpypi dist/*
+
+            per https://stackoverflow.com/questions/52016336/how-to-upload-new-versions-of-project-to-pypi-with-twine,
 
         Worked: see https://test.pypi.org/project/FAB-Quickstart/0.9.1/
 
-    now install it
+    to install it
 
         pip install -i https://test.pypi.org/simple/ FAB-Quickstart
 

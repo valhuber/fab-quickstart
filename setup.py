@@ -20,9 +20,9 @@ def read(fname):
 def desc():
     return read("README.rst")
 
+
 project_urls = {
-  'Code': 'https://mygreatsite.com',
-  'FAB Quick Start Guide': 'https://anothersite.com'
+  'FAB Quick Start Guide': 'https://github.com/valhuber/fab-quickstart/wiki'
 }
 
 setup(
