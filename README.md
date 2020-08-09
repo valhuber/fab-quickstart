@@ -61,7 +61,7 @@ Follow the steps below to install, generate an app, and run it.
 ### Install fab_quickstart
 ```
 cd <project>  # fab directory containing `config.py` file
-pip install fab-quickstart
+pip install -i https://test.pypi.org/simple/ FAB-Quickstart==0.9.0
 ```
 
 ### Generate views.py
