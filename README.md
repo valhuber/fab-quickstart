@@ -1,5 +1,7 @@
 # FAB Quick Start Utility - build `views.py`
-The `fab_quickstart` command line utility generates Flask Application Builder `views.py` files, to create instant multi-page, multi-table apps.
+The `fab_quickstart` command line utility generates
+[Flask Application Builder (FAB)](https://github.com/dpgaspar/Flask-AppBuilder)
+`views.py` files, to create instant multi-page, multi-table apps.
 
 Use this [Quick Start Guide](https://github.com/valhuber/fab-quickstart/wiki) to create the application below in 10 minutes.
 
