@@ -22,22 +22,19 @@ Recall that creating the `views.py` file can be [tedious](https://github.com/val
 
 
 ## Usage
-Follow the steps below to install, generate an app, and run it.
+First, create a fab project (e.g., see the Quick Start Guide).
 
-### Install fab_quickstart
+Then, generate the `views.py` file like this:
+
 ```
 cd <project>  # fab directory containing `config.py` file
 pip install -i https://test.pypi.org/simple/ FAB-Quickstart==0.9.0
-```
 
-### Generate views.py
-```
 fab-qs
-# copy generated output over your views.py file
 ```
 
-### Run generated app
-Run fab to run the app:
+Copy the console output to your `views.py` file, and run fab / flask app:
+
 ```
 cd project
 export FLASK_APP=app
