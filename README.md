@@ -30,9 +30,9 @@ Then, generate the `views.py` file like this:
 
 ```
 cd <project>  # fab directory containing `config.py` file
-pip install -i https://test.pypi.org/simple/ FAB-Quickstart==0.9.0
+pip install -i https://test.pypi.org/simple/ FAB-Quickstart
 
-fab-qs
+fab-quickstart
 ```
 
 Copy the console output to your `views.py` file, and run fab / flask app:

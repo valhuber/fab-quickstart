@@ -20,6 +20,10 @@ def read(fname):
 def desc():
     return read("README.rst")
 
+project_urls = {
+  'Code': 'https://mygreatsite.com',
+  'FAB Quick Start Guide': 'https://anothersite.com'
+}
 
 setup(
     name="FAB-Quickstart",
@@ -28,9 +32,10 @@ setup(
     license="BSD",
     author="Val Huber",
     author_email="valjhuber@gmail.com",
+    project_urls=project_urls,
     description=(
-        "Creates FAB view from model, for an instant multi-page, multi-table app.\n"
-        "Apps are multi-page: 1 page per table, with page-page navigation for related data.\n"
+        "Creates FAB view from model, for an instant multi-page, multi-table app."
+        "Apps are multi-page: 1 page per table, with page-page navigation for related data."
         "Pages are multi-table: includes related_views, predictive joins."
     ),
     long_description=desc(),
@@ -38,7 +43,7 @@ setup(
     packages=find_packages(),
     package_data={"": ["LICENSE"]},
     entry_points={
-        "console_scripts": ["fabqs=fab_quickstart.cli:start"]
+        "console_scripts": ["fab-quickstart=fab_quickstart.cli:start"]
     },
     include_package_data=True,
     zip_safe=False,
@@ -67,7 +72,7 @@ setup(
     extras_require={"jmespath": ["jmespath>=0.9.5"]},
     tests_require=["nose>=1.0", "mockldap>=0.3.0"],
     classifiers=[
-        "Development Status :: 5 - Production/Stable",
+        "Development Status :: 1 - Planning",
         "Environment :: Web Environment",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: BSD License",

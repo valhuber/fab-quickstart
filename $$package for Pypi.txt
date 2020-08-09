@@ -13,6 +13,8 @@ better:
     create build: https://packaging.python.org/tutorials/packaging-projects/
         
         deactivate  # fails if venv activate
+
+        python3 -m pip install --user --upgrade twine
         
         python3 -m pip install --user --upgrade setuptools wheel
         
@@ -29,6 +31,8 @@ better:
 
         python3 -m pip install --user --upgrade twine
 
+        python3 setup.py sdist bdist_wheel
+
         python3 -m twine upload --repository testpypi dist/*
             __token__
             << generated token >>
@@ -40,7 +44,7 @@ better:
         change version in fab_quickstart.__init__
         delete dist folder
 
-        python3 -m pip install --user --upgrade twine
+        python3 setup.py sdist bdist_wheel
 
         see https://stackoverflow.com/questions/52016336/how-to-upload-new-versions-of-project-to-pypi-with-twine,
             so...
@@ -51,52 +55,8 @@ better:
 
     now install it
 
-        pip install -i https://test.pypi.org/simple/ FAB-Quickstart==0.9.0
+        pip install -i https://test.pypi.org/simple/ FAB-Quickstart
 
-            val@valMbp testPy % pip install -i https://test.pypi.org/simple/ FAB-Quickstart==0.9.0
-            Looking in indexes: https://test.pypi.org/simple/
-            Requirement already satisfied: FAB-Quickstart==0.9.0 in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages/FAB_Quickstart-0.9.0-py3.8.egg (0.9.0)
-            Requirement already satisfied: apispec[yaml]<4,>=3.3 in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages (from FAB-Quickstart==0.9.0) (3.3.1)
-            Requirement already satisfied: colorama<1,>=0.3.9 in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages (from FAB-Quickstart==0.9.0) (0.4.3)
-            Requirement already satisfied: click<8,>=6.7 in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages (from FAB-Quickstart==0.9.0) (7.1.2)
-            Requirement already satisfied: email_validator<2,>=1.0.5 in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages (from FAB-Quickstart==0.9.0) (1.1.1)
-            Requirement already satisfied: Flask<2,>=0.12 in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages (from FAB-Quickstart==0.9.0) (1.1.2)
-            Requirement already satisfied: Flask-Babel<2,>=1 in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages (from FAB-Quickstart==0.9.0) (1.0.0)
-            Requirement already satisfied: Flask-Login<0.5,>=0.3 in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages (from FAB-Quickstart==0.9.0) (0.4.1)
-            Requirement already satisfied: Flask-OpenID<2,>=1.2.5 in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages (from FAB-Quickstart==0.9.0) (1.2.5)
-            Requirement already satisfied: Flask-SQLAlchemy<3,>=2.4 in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages (from FAB-Quickstart==0.9.0) (2.4.4)
-            Requirement already satisfied: Flask-WTF<1,>=0.14.2 in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages (from FAB-Quickstart==0.9.0) (0.14.3)
-            Requirement already satisfied: Flask-JWT-Extended<4,>=3.18 in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages (from FAB-Quickstart==0.9.0) (3.24.1)
-            Requirement already satisfied: jsonschema<4,>=3.0.1 in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages (from FAB-Quickstart==0.9.0) (3.2.0)
-            Requirement already satisfied: marshmallow<4,>=3 in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages (from FAB-Quickstart==0.9.0) (3.7.1)
-            Requirement already satisfied: marshmallow-enum<2,>=1.5.1 in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages (from FAB-Quickstart==0.9.0) (1.5.1)
-            Requirement already satisfied: marshmallow-sqlalchemy<1,>=0.22.0 in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages (from FAB-Quickstart==0.9.0) (0.23.1)
-            Requirement already satisfied: python-dateutil<3,>=2.3 in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages (from FAB-Quickstart==0.9.0) (2.8.1)
-            Requirement already satisfied: prison<1.0.0,>=0.1.3 in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages (from FAB-Quickstart==0.9.0) (0.1.3)
-            Requirement already satisfied: PyJWT>=1.7.1 in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages (from FAB-Quickstart==0.9.0) (1.7.1)
-            Requirement already satisfied: sqlalchemy-utils<1,>=0.32.21 in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages (from FAB-Quickstart==0.9.0) (0.36.8)
-            Requirement already satisfied: PyYAML>=3.10; extra == "yaml" in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages (from apispec[yaml]<4,>=3.3->FAB-Quickstart==0.9.0) (5.3.1)
-            Requirement already satisfied: dnspython>=1.15.0 in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages (from email_validator<2,>=1.0.5->FAB-Quickstart==0.9.0) (2.0.0)
-            Requirement already satisfied: idna>=2.0.0 in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages (from email_validator<2,>=1.0.5->FAB-Quickstart==0.9.0) (2.10)
-            Requirement already satisfied: Werkzeug>=0.15 in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages (from Flask<2,>=0.12->FAB-Quickstart==0.9.0) (1.0.1)
-            Requirement already satisfied: Jinja2>=2.10.1 in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages (from Flask<2,>=0.12->FAB-Quickstart==0.9.0) (2.11.2)
-            Requirement already satisfied: itsdangerous>=0.24 in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages (from Flask<2,>=0.12->FAB-Quickstart==0.9.0) (1.1.0)
-            Requirement already satisfied: pytz in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages (from Flask-Babel<2,>=1->FAB-Quickstart==0.9.0) (2020.1)
-            Requirement already satisfied: Babel>=2.3 in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages (from Flask-Babel<2,>=1->FAB-Quickstart==0.9.0) (2.8.0)
-            Requirement already satisfied: python3-openid>=2.0 in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages (from Flask-OpenID<2,>=1.2.5->FAB-Quickstart==0.9.0) (3.2.0)
-            Requirement already satisfied: SQLAlchemy>=0.8.0 in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages (from Flask-SQLAlchemy<3,>=2.4->FAB-Quickstart==0.9.0) (1.3.18)
-            Requirement already satisfied: WTForms in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages (from Flask-WTF<1,>=0.14.2->FAB-Quickstart==0.9.0) (2.3.1)
-            Requirement already satisfied: six in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages (from Flask-JWT-Extended<4,>=3.18->FAB-Quickstart==0.9.0) (1.15.0)
-            Requirement already satisfied: setuptools in /Users/val/.local/lib/python3.8/site-packages (from jsonschema<4,>=3.0.1->FAB-Quickstart==0.9.0) (49.2.1)
-            Requirement already satisfied: pyrsistent>=0.14.0 in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages (from jsonschema<4,>=3.0.1->FAB-Quickstart==0.9.0) (0.16.0)
-            Requirement already satisfied: attrs>=17.4.0 in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages (from jsonschema<4,>=3.0.1->FAB-Quickstart==0.9.0) (19.3.0)
-            Requirement already satisfied: MarkupSafe>=0.23 in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages (from Jinja2>=2.10.1->Flask<2,>=0.12->FAB-Quickstart==0.9.0) (1.1.1)
-            Requirement already satisfied: defusedxml in /Users/val/.pyenv/versions/3.8.3/lib/python3.8/site-packages (from python3-openid>=2.0->Flask-OpenID<2,>=1.2.5->FAB-Quickstart==0.9.0) (0.6.0)
-            WARNING: You are using pip version 19.2.3, however version 20.2.1 is available.
-            You should consider upgrading via the 'pip install --upgrade pip' command.
-            val@valMbp testPy % FAB-quickstart
-            zsh: command not found: FAB-quickstart
-            val@valMbp testPy %
 
 
 running Mac, Catalina
