@@ -18,7 +18,12 @@ cd /Users/val/python/vsc/fab_nw ; env /Users/val/python/vsc/fab_nw/venv/bin/pyth
     cli unable to show version (want: fab-quickstart version)
     cli name (more like flask fab quickstart, or flask fab generate-views, or?)
   major
-    fab: OrderDetail fails on "show" page    
+    directory confusion: flask fab create-app" creates app/app
+    fab-quickstart fails
+       File "/Users/val/python/vscode/nw/venv/lib/python3.8/site-packages/fab_quickstart/cli.py", line 76, in main
+        fab_quick_start = fab_quickstart.FabQuickStart()
+        AttributeError: module 'fab_quickstart' has no attribute 'FabQuickStart'
+        fab: OrderDetail fails on "show" page    
 
 
 CREATE TABLE IF NOT EXISTS "EmployeeTerritoryFK" 
