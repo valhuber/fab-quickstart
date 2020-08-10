@@ -41,7 +41,7 @@ from sqlalchemy import MetaData
 import inspect
 import importlib
 import click
-import __init__
+from fab_quickstart import __version__
 
 #  MetaData = NewType('MetaData', object)
 MetaDataTable = NewType('MetaDataTable', object)
@@ -90,7 +90,7 @@ class FabQuickStart(object):
 
         cwd = os.getcwd()
         self._result += '"""'
-        self._result += ("\nFab QuickStart " + __init__.__version__ + "\n\n"
+        self._result += ("\nFab QuickStart " + __version__ + "\n\n"
                          + "Current Working Directory: " + cwd + "\n\n"
                          + "From: " + sys.argv[0] + "\n\n"
                          + "Using Python: " + sys.version + "\n\n"
@@ -100,7 +100,7 @@ class FabQuickStart(object):
                          + str(self._non_favorite_names_list) + "\n\n"
                          + "At: " + str(datetime.datetime.now()) + "\n\n")
         if ("fab-quickstart" in cwd and "nw" not in cwd):
-            cwd = cwd.replace("fab-quickstart", "fab-quickstart/nw", 1)
+            cwd = cwd.replace("fab-quickstart", "fab-quickstart/nw-app", 1)
             self._result += "Debug cmd override: " + cwd + "\n\n"
             # print (self._result)
         self._result += '"""\n\n'
@@ -148,7 +148,7 @@ class FabQuickStart(object):
                 credit: https://www.blog.pythonlibrary.org/2016/05/27/python-201-an-intro-to-importlib/
             """
             sys.path.insert(0, a_cwd + '/app') 
-            print(sys.path)  #  e.g., adds /Users/val/python/vscode/fab-quickstart/nw/app
+            # print(sys.path)  #  e.g., adds /Users/val/python/vscode/fab-quickstart/nw/app
             models = importlib.import_module('models')
 
             sys.path.insert(0, a_cwd)

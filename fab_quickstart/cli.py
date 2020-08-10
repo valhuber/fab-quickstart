@@ -1,5 +1,5 @@
 import click
-import fab_quickstart
+from base import FabQuickStart
 
 @click.group()
 def fab():
@@ -73,7 +73,7 @@ def main(favorites, non_favorites):
             5. copy output over app/views.py
             6. cd my_project; flask run
     """
-    fab_quick_start = fab_quickstart.FabQuickStart()
+    fab_quick_start = FabQuickStart()
     fab_quick_start.favorite_names = favorites
     fab_quick_start.non_favorite_names = non_favorites
     fab_quick_start.run()

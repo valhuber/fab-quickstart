@@ -14,87 +14,13 @@ cd /Users/val/python/vsc/fab_nw ; env /Users/val/python/vsc/fab_nw/venv/bin/pyth
     python setup.py install
 
 8/8
-  minor
+  minor - cli fixes -- Daniel help??
     cli unable to show version (want: fab-quickstart version)
-    cli name (more like flask fab quickstart, or flask fab generate-views, or?)
-  major
-    directory confusion: flask fab create-app" creates app/app
-    fab-quickstart fails
-       File "/Users/val/python/vscode/nw/venv/lib/python3.8/site-packages/fab_quickstart/cli.py", line 76, in main
-        fab_quick_start = fab_quickstart.FabQuickStart()
-        AttributeError: module 'fab_quickstart' has no attribute 'FabQuickStart'
-        fab: OrderDetail fails on "show" page    
+    cli name (more like flask fab quickstart, or flask fab -quickstart generate-views, or?)
 
-      python /Users/val/python/vscode/fab-quickstart/fab_quickstart/cli.py
-        works, tho at wrong directory level
-    app fails to run
+  major
+    fab-quickstart fails due to package / import naming issues  -- Daniel help??
+    app fails to run due to ProductDetails_V - assigned to Val
       File "/Users/val/python/vscode/nw/app/app/views.py", line 168, in ProductDetails_VModelView
         datamodel = SQLAInterface(ProductDetails_V)
         NameError: name 'ProductDetails_V' is not defined (bug: views not expected)
-
-CREATE TABLE IF NOT EXISTS "EmployeeTerritoryFK" 
-(
-  "Id" VARCHAR(8000) PRIMARY KEY, 
-  "EmployeeId" INTEGER NOT NULL, 
-  "TerritoryId" VARCHAR(8000) NULL,
-
-  FOREIGN KEY (EmployeeId) REFERENCES Employee(Id)
-);
-
-CREATE TABLE IF NOT EXISTS new 
-(
-  "Id" VARCHAR(8000) PRIMARY KEY, 
-  "EmployeeId" INTEGER NOT NULL, 
-  "TerritoryId" VARCHAR(8000) NULL,
-
-  FOREIGN KEY (EmployeeId) REFERENCES Employee(Id)
-  FOREIGN KEY (TerritoryId) REFERENCES Territory(Id)
-);
-
-insert into new select * from EmployeeTerritory;
-
-ALTER TABLE "EmployeeTerritory" RENAME TO "old";
-
-ALTER TABLE new RENAME TO "EmployeeTerritory";
-
-drop table old;
-
-
-
-            import_lib = a_cwd + "/app/models.py"  # err '/Users/val/python/vscode/nw/app/models'
-            import_lib = import_lib.replace("/", ".")
-            import_lib = import_lib[1:]
-            print("logging.file: ", logging.__file__)
-            print("logging.name: ", logging.__name__)
-            import_lib = "Users/val/python/vscode/fab-quickstart/nw/app/__init__.py"
-
-            sys.path.insert(0, "Users/val/python/vscode/fab-quickstart/nw/app")
-            # models = importlib.import_module("models", package="app") #  no pkg name views
-
-            # models = importlib.import_module("Users/val/python/vscode/fab-quickstart/nw/app", package='models')  # module not found
-
-            import_mod_name = "models"
-            models_spec = importlib.util.spec_from_file_location(
-                import_mod_name, loader = import_lib)
-            module = importlib.util.module_from_spec(models_spec)
-            # models_spec.loader.exec_module(module) 
-            # str' object has no attribute 'exec_module'
-            # not found: 'Users/val/python/vscode/fab-quickstart/nw/app/__init__.py'
-            """
-                module_file_path = module_name.__file__
-                module_name = module_name.__name__
-                
-                https://www.blog.pythonlibrary.org/2016/05/27/python-201-an-intro-to-importlib/
-                    module_spec = importlib.util.spec_from_file_location(
-                        module_name, module_file_path)
-                    module = importlib.util.module_from_spec(module_spec)
-                    module_spec.loader.exec_module(module)
-                    print(dir(module))
-
-                https://www.blog.pythonlibrary.org/2016/05/27/python-201-an-intro-to-importlib/
-                https://programtalk.com/python-examples/importlib.util.spec_from_file_location/
-                https://stackoverflow.com/questions/56603077/modulenotfounderror-when-using-importlib-import-module
-                https://stackoverflow.com/questions/8790003/dynamically-import-a-method-in-a-file-from-a-string
-            """
-            # models = importlib.import_module(import_module)  # ModuleNotFoundError
-
