@@ -25,6 +25,12 @@ cd /Users/val/python/vsc/fab_nw ; env /Users/val/python/vsc/fab_nw/venv/bin/pyth
         AttributeError: module 'fab_quickstart' has no attribute 'FabQuickStart'
         fab: OrderDetail fails on "show" page    
 
+      python /Users/val/python/vscode/fab-quickstart/fab_quickstart/cli.py
+        works, tho at wrong directory level
+    app fails to run
+      File "/Users/val/python/vscode/nw/app/app/views.py", line 168, in ProductDetails_VModelView
+        datamodel = SQLAInterface(ProductDetails_V)
+        NameError: name 'ProductDetails_V' is not defined (bug: views not expected)
 
 CREATE TABLE IF NOT EXISTS "EmployeeTerritoryFK" 
 (

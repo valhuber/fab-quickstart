@@ -148,7 +148,7 @@ class FabQuickStart(object):
                 credit: https://www.blog.pythonlibrary.org/2016/05/27/python-201-an-intro-to-importlib/
             """
             sys.path.insert(0, a_cwd + '/app') 
-            # print(sys.path)  #  e.g., adds /Users/val/python/vscode/fab-quickstart/nw/app
+            print(sys.path)  #  e.g., adds /Users/val/python/vscode/fab-quickstart/nw/app
             models = importlib.import_module('models')
 
             sys.path.insert(0, a_cwd)
