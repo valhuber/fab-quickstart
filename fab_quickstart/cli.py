@@ -1,5 +1,5 @@
 import click
-from base import FabQuickStart
+from base import FabQuickStart  # pip'd run fails - ModuleNotFoundError: No module named 'base'
 
 @click.group()
 def fab():

@@ -1,4 +1,4 @@
-import fab_quickstart
+import fab_quickstart  # FIXME fails with new pkg, not important for now
 
 import logging
 from typing import NewType
