@@ -99,10 +99,15 @@ class FabQuickStart(object):
                          + "Non Favorites: "
                          + str(self._non_favorite_names_list) + "\n\n"
                          + "At: " + str(datetime.datetime.now()) + "\n\n")
+        #  print ("\n\n** debug path issues: \n\n" + self._result)
         if ("fab-quickstart" in cwd and "nw" not in cwd):
-            cwd = cwd.replace("fab-quickstart", "fab-quickstart/nw-app", 1)
+            # sorry, this is just to enable run cli/base, *or" by python cli.py
+            # need to wind up at .... /nw-app
+            if ("fab-quickstart/fab-quickstart" not in cwd):  # run cli or base
+                cwd = cwd.replace("fab-quickstart",
+                                  "fab-quickstart/nw-app", 1)
             self._result += "Debug cmd override: " + cwd + "\n\n"
-            # print (self._result)
+            #  print ("\n\n** debug path issues: \n\n" + self._result)
         self._result += '"""\n\n'
         metadata = self.find_meta_data(cwd)
         meta_tables = metadata.tables
@@ -139,7 +144,7 @@ class FabQuickStart(object):
 
         if (do_dynamic_load):
             """
-                a_cwd -- not-this-project-dir (e.g., nw)
+                a_cwd -- not-this-project-dir (e.g., nw-app)
                 --app
                 --|--__init__.py
                 --|--models.py
@@ -148,8 +153,12 @@ class FabQuickStart(object):
                 credit: https://www.blog.pythonlibrary.org/2016/05/27/python-201-an-intro-to-importlib/
             """
             sys.path.insert(0, a_cwd + '/app') 
-            # print(sys.path)  #  e.g., adds /Users/val/python/vscode/fab-quickstart/nw/app
-            models = importlib.import_module('models')
+            #  e.g., adds /Users/val/python/vscode/fab-quickstart/nw-app/app
+            #  print("DEBUG find_meta sys.path: " + str(sys.path))  
+            try:
+                models = importlib.import_module('models')
+            except:
+                raise Exception("Unable to open models from: " + str(sys.path))
 
             sys.path.insert(0, a_cwd)
             config = importlib.import_module('config')
