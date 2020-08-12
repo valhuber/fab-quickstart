@@ -1,3 +1,6 @@
+# OLD VERSION
+This version failed to deploy to PyPi per [PyPi deployment issues](https://stackoverflow.com/questions/63382679/app-runs-locally-fails-in-pypi-with-modulenotfound).  Please use [fab-quick-start](https://github.com/valhuber/fab-quick-start)
+
 # FAB Quick Start Utility - build `views.py`
 The `fab_quickstart` command line utility generates
 [Flask Application Builder (FAB)](https://github.com/dpgaspar/Flask-AppBuilder)
